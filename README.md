@@ -17,6 +17,8 @@
 ------------------
 ## 介绍
 
+因为采用了UPX压缩了软件体积，工具运行时可能会出现误报，可以放心使用，工具不会对您的电脑造成任何损害。
+
 - [x] 小程序自动解密
 - [x] 小程序自动解包，支持代码美化输出
   - [x] Json美化
@@ -33,10 +35,10 @@
 ### 工程结构还原
 
 #### 未还原
-<img src="./images/img.png" width="50%">
+<img src="./images/img.png" width="30%">
 
 #### 还原后
-<img src="./images/img1.png" width="50%">
+<img src="./images/img1.png" width="30%">
 
 ## 安装
 
