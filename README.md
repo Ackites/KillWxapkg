@@ -72,8 +72,8 @@
     - 输入文件路径（多个文件用逗号分隔）或输入目录路径
     - 自动检测，已解密的包，自动解包，未解密的包，自动解密后解包
     - 解密后的包会保存到输入目录下以AppID命名的文件夹
-    - 例：-in=app.wxpkg,app1.wxapkg
-    - 例：-in=C:\Users\mi\Desktop\Applet\64
+    - 例：-in="app.wxpkg,app1.wxapkg"
+    - 例：-in="C:\Users\mi\Desktop\Applet\64"
 - `-out string`
     -  输出目录路径（如果未指定，则默认保存到输入目录下以AppID命名的文件夹）
 - `-restore`
