@@ -15,6 +15,10 @@
 [![size](https://img.shields.io/github/repo-size/Ackites/KillWxapkg)]()
 [![contributors](https://img.shields.io/github/contributors/Ackites/KillWxapkg)]()
 ------------------
+## 声明
+
+**本程序仅供于学习交流，请使用者遵守《中华人民共和国网络安全法》，勿将此工具用于非授权的测试，开发者不负任何连带法律责任。**
+
 ## 介绍
 
 **因为采用了UPX压缩了软件体积，工具运行时可能会出现误报，可以放心使用，工具不会对您的电脑造成任何损害。**
