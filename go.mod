@@ -8,7 +8,7 @@ require (
 	github.com/gorilla/css v1.0.1
 	github.com/yosssi/gohtml v0.0.0-20201013000340-ee4748c638f4
 	golang.org/x/crypto v0.25.0
-	golang.org/x/net v0.21.0
+	golang.org/x/net v0.27.0
 )
 
 require (

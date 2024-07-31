@@ -1,12 +1,37 @@
 package restore
 
 import (
-	"log"
+	"encoding/json"
+	"os"
 	"path/filepath"
+	"strings"
+
+	"github.com/Ackites/KillWxapkg/internal/enum"
 
 	"github.com/Ackites/KillWxapkg/internal/config"
 	"github.com/Ackites/KillWxapkg/internal/unpack"
 )
+
+// fixSubpackageDir 修正子包目录
+func fixSubpackageDir(wxapkg *config.WxapkgInfo, outputDir string) string {
+	var e struct {
+		SubPackages []unpack.SubPackage `json:"subPackages"`
+	}
+	content, _ := os.ReadFile(filepath.Join(outputDir, enum.App_Config))
+	_ = json.Unmarshal(content, &e)
+
+	for _, subPackage := range e.SubPackages {
+		root := subPackage.Root
+		if !strings.HasPrefix(root, "/") {
+			root = "/" + root
+		}
+		if strings.HasPrefix(wxapkg.SourcePath, root) {
+			return filepath.Join(outputDir, root)
+		}
+	}
+
+	return ""
+}
 
 // ProjectStructure 是否还原工程目录结构
 func ProjectStructure(outputDir string, restoreDir bool) {
@@ -17,28 +42,24 @@ func ProjectStructure(outputDir string, restoreDir bool) {
 	// 创建文件删除管理器
 	manager := config.NewFileDeletionManager()
 
-	// 配置文件还原
-	configFile := filepath.Join(outputDir, "app-config.json")
-	err := unpack.ProcessConfigFiles(configFile)
-	if err != nil {
-		log.Printf("还原工程目录结构失败: %v\n", err)
-	} else {
-		manager.AddFile(configFile)
+	// 包管理器
+	wxakpgManager := config.GetWxapkgManager()
+
+	// 修正子包目录
+	for _, wxapkg := range wxakpgManager.Packages {
+		if IsSubpackage(wxapkg) {
+			wxapkg.SourcePath = fixSubpackageDir(wxapkg, outputDir)
+		}
 	}
 
-	// JavaScript文件还原
-	err = ProcessJavaScriptFiles(configFile, outputDir)
-	if err != nil {
-		log.Printf("处理JavaScript文件失败: %v\n", err)
-	}
+	// 反编译
+	decompiler := new(WxapkgDecompiler)
+	// 执行反编译操作
+	decompiler.Decompile(outputDir)
 
-	// WXSS文件还原
-	//var config unpack.AppConfig
-	//content, err := os.ReadFile(configFile)
-	//if err == nil {
-	//	_ = json.Unmarshal(content, &config)
-	//}
-	//ProcessWxssFiles(outputDir, config)
+	// 创建命令执行器, 执行解析器
+	executor := NewCommandExecutor(wxakpgManager)
+	executor.ExecuteAll()
 
 	// 执行删除文件操作
 	manager.DeleteFiles()

@@ -8,6 +8,10 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/Ackites/KillWxapkg/internal/restore"
+	"github.com/Ackites/KillWxapkg/internal/util"
+
+	. "github.com/Ackites/KillWxapkg/internal/config"
 	"github.com/Ackites/KillWxapkg/internal/decrypt"
 	"github.com/Ackites/KillWxapkg/internal/unpack"
 )
@@ -54,6 +58,14 @@ func DetermineOutputDir(input, appID string) string {
 func ProcessFile(inputFile, outputDir, appID string) error {
 	log.Printf("开始处理文件: %s\n", inputFile)
 
+	manager := GetWxapkgManager()
+
+	// 初始化 WxapkgInfo
+	info := &WxapkgInfo{
+		WxAppId:     appID,
+		IsExtracted: false,
+	}
+
 	// 确定解密后的文件路径
 	decryptedFilePath := filepath.Join(outputDir, filepath.Base(inputFile))
 
@@ -88,16 +100,33 @@ func ProcessFile(inputFile, outputDir, appID string) error {
 		}
 	}(tempDir)
 
-	err = unpack.UnpackWxapkg(decryptedData, tempDir)
+	// 包文件列表
+	var filelist []string
+
+	filelist, err = unpack.UnpackWxapkg(decryptedData, tempDir)
 	if err != nil {
 		return fmt.Errorf("解包失败: %v", err)
 	}
+
+	// 设置解包状态
+	info.IsExtracted = true
 
 	// 合并解包后的内容到输出目录
 	err = mergeDirs(tempDir, outputDir)
 	if err != nil {
 		return fmt.Errorf("合并目录失败: %v", err)
 	}
+
+	info.WxapkgType = util.GetWxapkgType(filelist)
+
+	if restore.IsMainPackage(info) {
+		info.SourcePath = outputDir
+	} else if restore.IsSubpackage(info) {
+		info.SourcePath = filelist[0]
+	}
+
+	// 将包信息添加到管理器中
+	manager.AddPackage(info.SourcePath, info)
 
 	return nil
 }

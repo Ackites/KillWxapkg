@@ -8,8 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/Ackites/KillWxapkg/utils"
-
+	"github.com/Ackites/KillWxapkg/internal/util"
 	"github.com/dop251/goja"
 	"golang.org/x/net/html"
 )
@@ -333,7 +332,7 @@ func ProcessXssFiles(dir string, mainDir string) {
 
 			for name, content := range result {
 				name = filepath.Join(saveDir, changeExt(name, ".wxss"))
-				err := os.WriteFile(name, []byte(utils.TransformCSS(content)), 0755)
+				err := os.WriteFile(name, []byte(util.TransformCSS(content)), 0755)
 				log.Printf("Save wxss %s done.\n", name)
 				if err != nil {
 					log.Printf("Error saving file: %v\n", err)

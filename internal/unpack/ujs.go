@@ -5,14 +5,17 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"regexp"
-	"strings"
-	"sync"
 
-	. "github.com/Ackites/KillWxapkg/internal/config"
+	"github.com/Ackites/KillWxapkg/internal/enum"
 
+	"github.com/Ackites/KillWxapkg/internal/config"
 	"github.com/dop251/goja"
 )
+
+// JavaScriptParser JavaScript 解析器
+type JavaScriptParser struct {
+	OutputDir string
+}
 
 // removeWrapper 移除函数包装器
 func removeWrapper(jsCode string) (string, error) {
@@ -40,26 +43,27 @@ func removeWrapper(jsCode string) (string, error) {
 	return value.String(), nil
 }
 
-// removeInvalidLineCode 删除无效行代码
-func removeInvalidLineCode(code string) string {
-	invalidRe := regexp.MustCompile(`\s+[a-z] = VM2_INTERNAL_STATE_DO_NOT_USE_OR_PROGRAM_WILL_FAIL\.handleException\([a-z]\);`)
-	return invalidRe.ReplaceAllString(code, "")
+// 是否为分包
+func isSubpackage(wxapkg *config.WxapkgInfo) bool {
+	switch wxapkg.WxapkgType {
+	case enum.APP_SUBPACKAGE_V1, enum.APP_SUBPACKAGE_V2, enum.GAME_SUBPACKAGE:
+		return true
+	default:
+		return false
+	}
 }
 
-// SplitJs 解析和分割 JavaScript 文件
-func SplitJs(filePath string, mainDir string, wg *sync.WaitGroup, errChan chan error) {
-	defer wg.Done()
+// Parse 解析和分割 JavaScript 文件
+func (p *JavaScriptParser) Parse(option config.WxapkgInfo) error {
 
-	isSubPkg := mainDir != ""
-	dir := filepath.Dir(filePath)
-	if isSubPkg {
-		dir = mainDir
+	dir := option.SourcePath
+	if isSubpackage(&option) {
+		dir = p.OutputDir
 	}
 
-	code, err := os.ReadFile(filePath)
+	code, err := os.ReadFile(option.Option.ServiceSource)
 	if err != nil {
-		errChan <- fmt.Errorf("failed to read file: %w", err)
-		return
+		return fmt.Errorf("failed to read file: %w", err)
 	}
 
 	vm := goja.New()
@@ -86,8 +90,19 @@ func SplitJs(filePath string, mainDir string, wg *sync.WaitGroup, errChan chan e
 	// 提供 __g 变量的默认实现
 	err = vm.Set("__g", make(map[string]interface{}))
 	if err != nil {
-		errChan <- err
-		return
+		return err
+	}
+
+	// 提供  __wxConfig 变量的默认实现
+	err = vm.Set("__wxConfig", make(map[string]interface{}))
+	if err != nil {
+		return err
+	}
+
+	// 提供 global 变量的默认实现
+	err = vm.Set("global", make(map[string]interface{}))
+	if err != nil {
+		return err
 	}
 
 	err = vm.Set("__vd_version_info__", map[string]interface{}{
@@ -95,8 +110,7 @@ func SplitJs(filePath string, mainDir string, wg *sync.WaitGroup, errChan chan e
 		"build":   "default",
 	})
 	if err != nil {
-		errChan <- err
-		return
+		return err
 	}
 
 	wxAppCode := make(map[string]func())
@@ -104,7 +118,7 @@ func SplitJs(filePath string, mainDir string, wg *sync.WaitGroup, errChan chan e
 	err = vm.Set("__wxAppCode__", wxAppCode)
 	if err != nil {
 		log.Printf("Error setting __wxAppCode__: %v\n", err)
-		return
+		return err
 	}
 
 	// 设置 define 函数和 require 函数的行为
@@ -118,31 +132,23 @@ func SplitJs(filePath string, mainDir string, wg *sync.WaitGroup, errChan chan e
 			cleanedCode = funcBody
 		}
 
-		bcode := cleanedCode
+		//bcode := cleanedCode
 		// 检查是否包含 "use strict" 并处理
-		if strings.HasPrefix(cleanedCode, `"use strict";`) || strings.HasPrefix(cleanedCode, `'use strict';`) {
-			cleanedCode = cleanedCode[13:]
-		} else if (strings.HasPrefix(cleanedCode, `(function(){"use strict";`) || strings.HasPrefix(cleanedCode, `(function(){'use strict';`)) &&
-			strings.HasSuffix(cleanedCode, `})();`) {
-			cleanedCode = cleanedCode[25 : len(cleanedCode)-5]
-		}
+		//if strings.HasPrefix(cleanedCode, `"use strict";`) || strings.HasPrefix(cleanedCode, `'use strict';`) {
+		//	cleanedCode = cleanedCode[13:]
+		//} else if (strings.HasPrefix(cleanedCode, `(function(){"use strict";`) || strings.HasPrefix(cleanedCode, `(function(){'use strict';`)) &&
+		//	strings.HasSuffix(cleanedCode, `})();`) {
+		//	cleanedCode = cleanedCode[25 : len(cleanedCode)-5]
+		//}
 
-		// 删除无效行代码
-		res := removeInvalidLineCode(cleanedCode)
-		if res == "" {
-			log.Printf("Fail to delete 'use strict' in \"%s\".", moduleName)
-			res = removeInvalidLineCode(bcode)
-		}
-
-		err = saveToFile(filepath.Join(dir, moduleName), []byte(res))
+		err = saveToFile(filepath.Join(dir, moduleName), []byte(cleanedCode))
 		if err != nil {
 			log.Printf("Error saving file: %v\n", err)
 		}
 		return goja.Undefined()
 	})
 	if err != nil {
-		errChan <- err
-		return
+		return err
 	}
 
 	err = vm.Set("require", func(call goja.FunctionCall) goja.Value {
@@ -151,23 +157,25 @@ func SplitJs(filePath string, mainDir string, wg *sync.WaitGroup, errChan chan e
 		return result
 	})
 	if err != nil {
-		errChan <- err
-		return
+		return err
 	}
 
-	if isSubPkg {
-		codeStr := string(code)
-		code = []byte(codeStr[strings.Index(codeStr, "define("):])
+	// 设置 $gwx 变量
+	err = vm.Set("$gwx", func(call goja.FunctionCall) goja.Value {
+		// $gwx function implementation here
+		return goja.Undefined()
+	})
+	if err != nil {
+		return err
 	}
 
 	_, err = vm.RunString(string(code))
 	if err != nil {
-		errChan <- fmt.Errorf("failed to run JavaScript: %w", err)
-		return
+		return fmt.Errorf("failed to run JavaScript: %w", err)
 	}
-	manager := NewFileDeletionManager()
-	manager.AddFile(filePath)
-	log.Printf("Splitting \"%s\" done.", filePath)
+
+	log.Printf("Splitting \"%s\" done.", option.Option.ServiceSource)
+	return nil
 }
 
 // saveToFile 保存文件内容
@@ -180,58 +188,6 @@ func saveToFile(filePath string, content []byte) error {
 	if err != nil {
 		log.Printf("Save file error: %v\n", err)
 		return fmt.Errorf("failed to write file: %w", err)
-	}
-	return nil
-}
-
-// ProcessJavaScriptFiles 处理所有 JavaScript 文件
-func ProcessJavaScriptFiles(dir string, config struct {
-	SubPackages []SubPackage `json:"subPackages"`
-}) error {
-	var wg sync.WaitGroup
-	errChan := make(chan error, 10) // 缓冲区大小可以根据需要调整
-
-	// 处理主包
-	appServicePath := filepath.Join(dir, "app-service.js")
-	workersPath := filepath.Join(dir, "workers.js")
-	if _, err := os.Stat(appServicePath); err == nil {
-		wg.Add(1)
-		go SplitJs(appServicePath, "", &wg, errChan)
-	}
-	if _, err := os.Stat(workersPath); err == nil {
-		wg.Add(1)
-		go SplitJs(workersPath, "", &wg, errChan)
-	}
-
-	// 遍历所有子包
-	for _, subPackage := range config.SubPackages {
-		subDir := filepath.Join(dir, subPackage.Root)
-		if _, err := os.Stat(subDir); err != nil {
-			continue
-		}
-		appServicePath = filepath.Join(subDir, "app-service.js")
-		workersPath = filepath.Join(subDir, "workers.js")
-		if _, err := os.Stat(appServicePath); err == nil {
-			wg.Add(1)
-			go SplitJs(appServicePath, dir, &wg, errChan)
-		}
-		if _, err := os.Stat(workersPath); err == nil {
-			wg.Add(1)
-			go SplitJs(workersPath, dir, &wg, errChan)
-		}
-	}
-
-	// 等待所有goroutine完成
-	go func() {
-		wg.Wait()
-		close(errChan)
-	}()
-
-	// 处理错误
-	for err := range errChan {
-		if err != nil {
-			return err
-		}
 	}
 	return nil
 }

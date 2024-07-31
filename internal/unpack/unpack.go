@@ -5,11 +5,12 @@ import (
 	"encoding/binary"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"path/filepath"
 	"sync"
 
-	formatter2 "github.com/Ackites/KillWxapkg/internal/unpack/formatter"
+	formatter2 "github.com/Ackites/KillWxapkg/internal/formatter"
 )
 
 type WxapkgFile struct {
@@ -20,47 +21,47 @@ type WxapkgFile struct {
 }
 
 // UnpackWxapkg 解包 wxapkg 文件并将内容保存到指定目录
-func UnpackWxapkg(data []byte, outputDir string) error {
+func UnpackWxapkg(data []byte, outputDir string) ([]string, error) {
 	reader := bytes.NewReader(data)
 
 	// 读取文件头
 	var firstMark byte
 	if err := binary.Read(reader, binary.BigEndian, &firstMark); err != nil {
-		return fmt.Errorf("读取首标记失败: %v", err)
+		return nil, fmt.Errorf("读取首标记失败: %v", err)
 	}
 	if firstMark != 0xBE {
-		return fmt.Errorf("无效的wxapkg文件: 首标记不正确")
+		return nil, fmt.Errorf("无效的wxapkg文件: 首标记不正确")
 	}
 
 	var info1, indexInfoLength, bodyInfoLength uint32
 	if err := binary.Read(reader, binary.BigEndian, &info1); err != nil {
-		return fmt.Errorf("读取info1失败: %v", err)
+		return nil, fmt.Errorf("读取info1失败: %v", err)
 	}
 	if err := binary.Read(reader, binary.BigEndian, &indexInfoLength); err != nil {
-		return fmt.Errorf("读取索引段长度失败: %v", err)
+		return nil, fmt.Errorf("读取索引段长度失败: %v", err)
 	}
 	if err := binary.Read(reader, binary.BigEndian, &bodyInfoLength); err != nil {
-		return fmt.Errorf("读取数据段长度失败: %v", err)
+		return nil, fmt.Errorf("读取数据段长度失败: %v", err)
 	}
 
 	// 验证长度的合理性
 	totalLength := uint64(indexInfoLength) + uint64(bodyInfoLength)
 	if totalLength > uint64(len(data)) {
-		return fmt.Errorf("文件长度不足, 文件损坏: 索引段(%d) + 数据段(%d) > 文件总长度(%d)", indexInfoLength, bodyInfoLength, len(data))
+		return nil, fmt.Errorf("文件长度不足, 文件损坏: 索引段(%d) + 数据段(%d) > 文件总长度(%d)", indexInfoLength, bodyInfoLength, len(data))
 	}
 	totalLength = uint64(len(data))
 
 	var lastMark byte
 	if err := binary.Read(reader, binary.BigEndian, &lastMark); err != nil {
-		return fmt.Errorf("读取尾标记失败: %v", err)
+		return nil, fmt.Errorf("读取尾标记失败: %v", err)
 	}
 	if lastMark != 0xED {
-		return fmt.Errorf("无效的wxapkg文件: 尾标记不正确")
+		return nil, fmt.Errorf("无效的wxapkg文件: 尾标记不正确")
 	}
 
 	var fileCount uint32
 	if err := binary.Read(reader, binary.BigEndian, &fileCount); err != nil {
-		return fmt.Errorf("读取文件数量失败: %v", err)
+		return nil, fmt.Errorf("读取文件数量失败: %v", err)
 	}
 
 	// 计算索引段的预期结束位置
@@ -68,47 +69,50 @@ func UnpackWxapkg(data []byte, outputDir string) error {
 
 	// 读取索引
 	fileList := make([]WxapkgFile, fileCount)
+	var filelistNames []string
 	for i := range fileList {
 		if err := binary.Read(reader, binary.BigEndian, &fileList[i].NameLen); err != nil {
-			return fmt.Errorf("读取文件名长度失败: %v", err)
+			return nil, fmt.Errorf("读取文件名长度失败: %v", err)
 		}
 
 		if fileList[i].NameLen == 0 || fileList[i].NameLen > 1024 {
-			return fmt.Errorf("文件名长度 %d 不合理", fileList[i].NameLen)
+			return nil, fmt.Errorf("文件名长度 %d 不合理", fileList[i].NameLen)
 		}
 
 		nameBytes := make([]byte, fileList[i].NameLen)
 		if _, err := io.ReadAtLeast(reader, nameBytes, int(fileList[i].NameLen)); err != nil {
-			return fmt.Errorf("读取文件名失败: %v", err)
+			return nil, fmt.Errorf("读取文件名失败: %v", err)
 		}
 
 		fileList[i].Name = string(nameBytes)
 
+		filelistNames = append(filelistNames, fileList[i].Name)
+
 		if err := binary.Read(reader, binary.BigEndian, &fileList[i].Offset); err != nil {
-			return fmt.Errorf("读取文件偏移量失败: %v", err)
+			return nil, fmt.Errorf("读取文件偏移量失败: %v", err)
 		}
 
 		if err := binary.Read(reader, binary.BigEndian, &fileList[i].Size); err != nil {
-			return fmt.Errorf("读取文件大小失败: %v", err)
+			return nil, fmt.Errorf("读取文件大小失败: %v", err)
 		}
 
 		// 验证文件偏移量和大小
 		fileEnd := uint64(fileList[i].Offset) + uint64(fileList[i].Size)
 		if fileEnd > totalLength {
-			return fmt.Errorf("文件 %s 的结束位置 (%d) 超出了文件总长度 (%d)", fileList[i].Name, fileEnd, totalLength)
+			return nil, fmt.Errorf("文件 %s 的结束位置 (%d) 超出了文件总长度 (%d)", fileList[i].Name, fileEnd, totalLength)
 		}
 
 		// 验证我们是否仍在索引段内
 		currentPos := uint64(reader.Size()) - uint64(reader.Len())
 		if currentPos > expectedIndexEnd {
-			return fmt.Errorf("索引读取超出预期范围: 当前位置 %d, 预期索引结束位置 %d", currentPos, expectedIndexEnd)
+			return nil, fmt.Errorf("索引读取超出预期范围: 当前位置 %d, 预期索引结束位置 %d", currentPos, expectedIndexEnd)
 		}
 	}
 
 	// 验证是否正确读完了整个索引段
 	currentPos := uint64(reader.Size()) - uint64(reader.Len())
 	if currentPos != expectedIndexEnd {
-		return fmt.Errorf("索引段长度不符: 读取到位置 %d, 预期结束位置 %d", currentPos, expectedIndexEnd)
+		return nil, fmt.Errorf("索引段长度不符: 读取到位置 %d, 预期结束位置 %d", currentPos, expectedIndexEnd)
 	}
 
 	// 控制并发数
@@ -147,7 +151,7 @@ func UnpackWxapkg(data []byte, outputDir string) error {
 
 	// 检查是否有错误
 	if len(errChan) > 0 {
-		return <-errChan
+		return nil, <-errChan
 	}
 
 	const configJSON = `{
@@ -160,10 +164,10 @@ func UnpackWxapkg(data []byte, outputDir string) error {
 	// 保存 project.config.json
 	configFile := filepath.Join(outputDir, "project.private.config.json")
 	if err := os.WriteFile(configFile, []byte(configJSON), 0755); err != nil {
-		return fmt.Errorf("保存文件 %s 失败: %w", configFile, err)
+		return nil, fmt.Errorf("保存文件 %s 失败: %w", configFile, err)
 	}
 
-	return nil
+	return filelistNames, nil
 }
 
 // processFile 处理单个文件的读取、格式化和保存
@@ -184,7 +188,7 @@ func processFile(outputDir string, file WxapkgFile, reader io.ReaderAt, bufferPo
 	defer func(f *os.File) {
 		err := f.Close()
 		if err != nil {
-			fmt.Printf("关闭文件 %s 失败: %v\n", file.Name, err)
+			log.Printf("关闭文件 %s 失败: %v\n", file.Name, err)
 		}
 	}(f)
 

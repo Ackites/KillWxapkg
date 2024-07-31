@@ -11,8 +11,17 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/Ackites/KillWxapkg/internal/enum"
+
+	"github.com/Ackites/KillWxapkg/internal/config"
+
 	"github.com/dop251/goja"
 )
+
+// ConfigParser 具体的配置文件解析器
+type ConfigParser struct {
+	OutputDir string
+}
 
 // PageConfig 存储页面配置
 type PageConfig struct {
@@ -35,58 +44,6 @@ type AppConfig struct {
 type SubPackage struct {
 	Root  string   `json:"root"`
 	Pages []string `json:"pages"`
-}
-
-// getWorkerPath 解析 workers.js 并返回公共路径
-func getWorkerPath(name string) string {
-	// 读取 workers.js 文件内容
-	code, err := os.ReadFile(name)
-	if err != nil {
-		panic(err)
-	}
-
-	// 使用 goja 创建 JavaScript VM
-	vm := goja.New()
-	_, err = vm.RunString(string(code))
-	if err != nil {
-		return ""
-	}
-
-	// 初始化公共路径
-	commPath := ""
-	err = vm.Set("define", func(call goja.FunctionCall) goja.Value {
-		name := call.Argument(0).String()
-		name = filepath.Dir(name) + "/"
-		if commPath == "" {
-			commPath = name
-		} else {
-			commPath = commonDir(commPath, name)
-		}
-		return goja.Undefined()
-	})
-	if err != nil {
-		return ""
-	}
-	_, err = vm.RunString(string(code))
-	if err != nil {
-		return ""
-	}
-
-	// 去掉最后一个字符
-	if len(commPath) > 0 {
-		commPath = commPath[:len(commPath)-1]
-	}
-	log.Printf("Worker path: \"" + commPath + "\"")
-	return commPath
-}
-
-// commonDir 找到两个路径的公共目录
-func commonDir(path1, path2 string) string {
-	i := 0
-	for i < len(path1) && i < len(path2) && path1[i] == path2[i] {
-		i++
-	}
-	return path1[:i]
 }
 
 // changeExt 更改文件扩展名
@@ -112,10 +69,10 @@ func save(filename string, content []byte) error {
 	return nil
 }
 
-// ProcessConfigFiles 解析和处理配置文件
-func ProcessConfigFiles(configFile string) error {
-	dir := filepath.Dir(configFile)
-	content, err := os.ReadFile(configFile)
+// Parse 解析和处理配置文件
+func (p *ConfigParser) Parse(option config.WxapkgInfo) error {
+	dir := filepath.Dir(option.Option.AppConfigSource)
+	content, err := os.ReadFile(option.Option.AppConfigSource)
 	if err != nil {
 		return err
 	}
@@ -188,11 +145,6 @@ func ProcessConfigFiles(configFile string) error {
 		app.NavigateToMiniProgramAppIdList = e.NavigateToMiniProgramAppIdList
 	}
 
-	// 处理 workers.js
-	if fileExists(filepath.Join(dir, "workers.js")) {
-		app.Workers = getWorkerPath(filepath.Join(dir, "workers.js"))
-	}
-
 	// 处理 extAppid
 	if len(e.ExtAppid) > 0 {
 		extContent, _ := json.MarshalIndent(map[string]interface{}{
@@ -234,8 +186,8 @@ func ProcessConfigFiles(configFile string) error {
 	}
 
 	// 处理 app-service.js 文件, 主包及子包
-	if fileExists(filepath.Join(dir, "app-service.js")) {
-		serviceContent, _ := os.ReadFile(filepath.Join(dir, "app-service.js"))
+	if fileExists(filepath.Join(dir, enum.App_Service)) {
+		serviceContent, _ := os.ReadFile(filepath.Join(dir, enum.App_Service))
 		matches := findMatches(`__wxAppCode__\['[^']+\.json'\]\s*=\s*({[^;]*});`, string(serviceContent))
 		if len(matches) > 0 {
 			attachInfo := make(map[string]interface{})
@@ -256,7 +208,7 @@ func ProcessConfigFiles(configFile string) error {
 		// 子包配置 app-service.js
 		for _, subPackage := range app.SubPackages {
 			root := subPackage.Root
-			subServiceFile := filepath.Join(dir, root, "app-service.js")
+			subServiceFile := filepath.Join(dir, root, enum.App_Service)
 			if !fileExists(subServiceFile) {
 				continue
 			}
@@ -356,7 +308,7 @@ func ProcessConfigFiles(configFile string) error {
 	if err != nil {
 		return err
 	}
-	log.Printf("Config file processed: %s\n", configFile)
+	log.Printf("Config file processed: %s\n", option.Option.AppConfigSource)
 	return nil
 }
 
