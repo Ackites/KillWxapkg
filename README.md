@@ -41,11 +41,11 @@
 <div style="display: flex">
   <div>
     <h4>还原前</h4>
-    <img src="./images/img.png" width="50%">
+    <img src="./images/img.png" width="30%">
   </div>
   <div>
     <h4>还原后</h4>
-    <img src="./images/img1.png" width="50%">
+    <img src="./images/img1.png" width="30%">
   </div>
 </div>
 
