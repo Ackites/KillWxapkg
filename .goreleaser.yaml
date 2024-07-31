@@ -33,6 +33,15 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
+      - "^chore:"
+      - "^style:"
+      - "^ci:"
+      - "^perf:"
+      - "^build:"
+      - "^deps:"
+      - "^vendor:"
+      - "^internal:"
+      - "^examples:"
 
 checksum:
   algorithm: md5
