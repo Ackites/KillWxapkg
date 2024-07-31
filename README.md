@@ -38,11 +38,16 @@
 
 ### 工程结构还原
 
-#### 未还原
-<img src="./images/img.png" width="30%">
-
-#### 还原后
-<img src="./images/img1.png" width="30%">
+<div style="display: flex">
+  <div>
+    <h4>还原前</h4>
+    <img src="./images/img.png" width="50%">
+  </div>
+  <div>
+    <h4>还原后</h4>
+    <img src="./images/img1.png" width="50%">
+  </div>
+</div>
 
 ## 安装
 
@@ -64,8 +69,7 @@
 
 ## 用法
 
-> 使用方法: program -id=<AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> 
-> [-restore] [-pretty] [-ext=<文件后缀>] 
+> -id=<输入AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> [-ext=<文件后缀>] [-restore] [-pretty] 
 
 ### 参数说明
 - `-id string`
