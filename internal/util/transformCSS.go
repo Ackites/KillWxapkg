@@ -3,166 +3,147 @@ package util
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"strings"
 
-	"github.com/gorilla/css/scanner"
+	"github.com/tdewolff/parse/v2"
+	"github.com/tdewolff/parse/v2/css"
 )
 
 // 定义需要移除的供应商前缀
 var removeTypes = []string{"webkit", "moz", "ms", "o"}
 
-// Declaration 结构体用于存储 CSS 声明
-type Declaration struct {
-	Property string
-	Value    string
-}
-
 // TransformCSS 函数用于转换 CSS
 func TransformCSS(style string) string {
-	s := scanner.New(style)
+	l := css.NewLexer(parse.NewInputString(style))
 	var sb strings.Builder
-	var currentSelector string
-	var currentDeclarations []Declaration
+	var inDeclarationBlock *bool = new(bool)
 
 	for {
-		token := s.Next()
-		if token.Type == scanner.TokenEOF {
-			if currentSelector != "" {
-				writeRuleset(&sb, currentSelector, currentDeclarations)
-			}
-			break
-		}
-
-		switch token.Type {
-		case scanner.TokenS:
-			// 忽略空白
-			continue
-		case scanner.TokenComment:
-			sb.WriteString(fmt.Sprintf("\n%s\n", token.Value))
-		case scanner.TokenIdent:
-			// 处理选择器或属性名
-			if currentSelector == "" {
-				// 选择器
-				currentSelector = strings.TrimSpace(token.Value)
-				if strings.HasPrefix(currentSelector, "wx-") {
-					currentSelector = currentSelector[3:]
-				} else if currentSelector == "body" {
-					currentSelector = "page"
-				}
+		tokenType, token := l.Next()
+		if tokenType == css.ErrorToken {
+			if l.Err() == io.EOF {
+				break
 			} else {
-				// 属性名
-				currentDeclarations = append(currentDeclarations, readDeclaration(s, token.Value))
+				fmt.Println("Error:", l.Err())
+				return ""
 			}
-		case scanner.TokenChar:
-			if token.Value == "{" {
-				// 忽略大括号
-				continue
-			} else if token.Value == "}" {
-				// 遇到右大括号，写入规则集
-				writeRuleset(&sb, currentSelector, currentDeclarations)
-				currentSelector = ""
-				currentDeclarations = nil
+		}
+
+		switch tokenType {
+		case css.CommentToken:
+			sb.WriteString(fmt.Sprintf("\n%s\n", token))
+		case css.IdentToken:
+			if *inDeclarationBlock {
+				handleProperty(l, &sb, token, inDeclarationBlock)
+			} else {
+				handleSelector(&sb, token)
 			}
+		case css.LeftBraceToken:
+			sb.WriteString(" {\n")
+			*inDeclarationBlock = true
+		case css.RightBraceToken:
+			sb.WriteString("}\n")
+			*inDeclarationBlock = false
 		default:
-			panic("unhandled default case")
+			sb.WriteString(string(token))
 		}
 	}
 
-	return beautifyCSS(sb.String())
+	return sb.String()
 }
 
-// readDeclaration 函数读取一个声明
-func readDeclaration(s *scanner.Scanner, property string) Declaration {
-	var value bytes.Buffer
-	foundColon := false
-	// 1: 遇到冒号，跳过冒号
-	// 2: 遇到冒号，不跳过冒号
-	count := 1
-
-	for {
-		token := s.Next()
-		if token.Type == scanner.TokenEOF || token.Value == "}" || token.Value == ";" {
-			break
-		}
-
-		if token.Value == ":" && count == 1 {
-			foundColon = true
-			count++
-			continue
-		}
-
-		if foundColon {
-			value.WriteString(token.Value)
-		}
+// 处理选择器
+func handleSelector(sb *strings.Builder, token []byte) {
+	selector := strings.TrimSpace(string(token))
+	if strings.HasPrefix(selector, "wx-") {
+		selector = selector[3:]
+	} else if selector == "body" {
+		selector = "page"
 	}
-
-	prop := strings.TrimSpace(property)
-	val := strings.TrimSpace(value.String())
-
-	if shouldRemoveProperty(prop, val) {
-		return Declaration{}
-	}
-
-	return Declaration{
-		Property: prop,
-		Value:    val,
-	}
+	sb.WriteString(selector)
 }
 
-// shouldRemoveProperty 函数判断是否应移除属性
-func shouldRemoveProperty(prop, value string) bool {
-	// 移除包含 progid:DXImageTransform 的值
-	if strings.HasPrefix(value, "progid:DXImageTransform") {
-		return true
+// 处理属性名和值
+func handleProperty(l *css.Lexer, sb *strings.Builder, token []byte, inDeclarationBlock *bool) {
+	property := string(token)
+	if skipProperty(property) {
+		skipValue(l, sb, inDeclarationBlock)
+		return
 	}
-	// 移除指定前缀的属性
+	initialContent := sb.String() // 获取当前内容的拷贝
+	sb.WriteString(fmt.Sprintf("    %s", property))
+	readValue(l, sb, initialContent, inDeclarationBlock)
+}
+
+// 判断是否跳过属性
+func skipProperty(prop string) bool {
 	for _, prefix := range removeTypes {
 		if strings.HasPrefix(prop, "-"+prefix+"-") {
-			return true
-		}
-		if strings.HasPrefix(value, "-"+prefix+"-") {
 			return true
 		}
 	}
 	return false
 }
 
-// writeRuleset 函数用于写入处理后的规则集
-func writeRuleset(sb *strings.Builder, selector string, declarations []Declaration) {
-	sb.WriteString(selector + " {\n")
-	for _, decl := range declarations {
-		// 过滤空的声明
-		if decl.Property != "" && decl.Value != "" {
-			sb.WriteString(fmt.Sprintf("    %s: %s;\n", decl.Property, decl.Value))
+// 跳过属性值
+func skipValue(l *css.Lexer, sb *strings.Builder, inDeclarationBlock *bool) {
+	for {
+		tokenType, _ := l.Next()
+		if tokenType == css.SemicolonToken {
+			break
+		}
+		if tokenType == css.RightBraceToken {
+			sb.WriteString("\n}\n")
+			*inDeclarationBlock = false
+			break
 		}
 	}
-	sb.WriteString("}\n\n")
 }
 
-// beautifyCSS 函数用于美化 CSS
-func beautifyCSS(css string) string {
-	var beautified strings.Builder
-	indent := 0
-	lines := strings.Split(css, "\n")
+// 读取属性值
+func readValue(l *css.Lexer, sb *strings.Builder, initialContent string, inDeclarationBlock *bool) {
+	// 第一个冒号
+	var colon int64 = 1
+	var isRightBrace bool = false
 
-	for _, line := range lines {
-		trimmedLine := strings.TrimSpace(line)
-		if trimmedLine == "" {
+	var value bytes.Buffer
+	for {
+		tokenType, token := l.Next()
+		if tokenType == css.ColonToken && colon == 1 {
+			colon++
 			continue
 		}
-
-		if strings.HasPrefix(trimmedLine, "}") {
-			indent--
+		if tokenType == css.SemicolonToken {
+			break
 		}
-
-		beautified.WriteString(strings.Repeat("    ", indent))
-		beautified.WriteString(trimmedLine)
-		beautified.WriteString("\n")
-
-		if strings.HasSuffix(trimmedLine, "{") {
-			indent++
+		if tokenType == css.RightBraceToken {
+			isRightBrace = true
+			break
+		}
+		value.Write(token)
+	}
+	if shouldRemoveValue(value.String()) {
+		resetStringBuilder(sb, initialContent)
+	} else {
+		sb.WriteString(": " + value.String() + ";\n")
+		if isRightBrace {
+			sb.WriteString("}\n")
+			*inDeclarationBlock = false
 		}
 	}
+}
 
-	return beautified.String()
+// 重置 strings.Builder 的内容到指定长度
+func resetStringBuilder(sb *strings.Builder, initialContent string) {
+	sb.Reset()
+	sb.WriteString(initialContent)
+}
+
+// 判断是否移除属性值
+func shouldRemoveValue(value string) bool {
+	if strings.HasPrefix(value, "progid:DXImageTransform") {
+		return true
+	}
+	return false
 }
