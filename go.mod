@@ -4,8 +4,8 @@ go 1.22
 
 require (
 	github.com/ditashi/jsbeautifier-go v0.0.0-20141206144643-2520a8026a9c
-	github.com/dop251/goja v0.0.0-20240707163329-b1681fb2a2f5
-	github.com/gorilla/css v1.0.1
+	github.com/dop251/goja v0.0.0-20240731150404-c665f0b58f6e
+	github.com/tdewolff/parse/v2 v2.7.15
 	github.com/yosssi/gohtml v0.0.0-20201013000340-ee4748c638f4
 	golang.org/x/crypto v0.25.0
 	golang.org/x/net v0.27.0

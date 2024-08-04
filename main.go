@@ -14,6 +14,7 @@ var (
 	fileExt    string
 	restoreDir bool
 	pretty     bool
+	noClean    bool
 )
 
 func init() {
@@ -23,6 +24,7 @@ func init() {
 	flag.StringVar(&fileExt, "ext", ".wxapkg", "处理的文件后缀")
 	flag.BoolVar(&restoreDir, "restore", false, "是否还原工程目录结构")
 	flag.BoolVar(&pretty, "pretty", false, "是否美化输出")
+	flag.BoolVar(&noClean, "noClean", false, "是否清理中间文件")
 }
 
 func main() {
@@ -30,7 +32,7 @@ func main() {
 	flag.Parse()
 
 	if appID == "" || input == "" {
-		fmt.Println("使用方法: program -id=<AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> [-ext=<文件后缀>] [-restore] [-pretty]")
+		fmt.Println("使用方法: program -id=<AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> [-ext=<文件后缀>] [-restore] [-pretty] [-noClean]")
 		flag.PrintDefaults()
 		return
 	}
@@ -43,10 +45,10 @@ func main() {
 | |\  \| | | |    \  /   / /_/ / (_| \__ \   <| | | |
 \_| \_/_|_|_|     \/    \__,_|\__,_|___/_|\_\_| |_|
                                                     
-             Wxapkg Decompiler Tool v1.0.0
+             Wxapkg Decompiler Tool v2.0.0
     `
 	fmt.Println(banner)
 
 	// 执行命令
-	cmd.Execute(appID, input, outputDir, fileExt, restoreDir, pretty)
+	cmd.Execute(appID, input, outputDir, fileExt, restoreDir, pretty, noClean)
 }

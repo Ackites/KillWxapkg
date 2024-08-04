@@ -23,6 +23,7 @@ builds:
       - CGO_ENABLED=0
     goos:
       - windows
+      - darwin
 
 archives:
   - format: binary

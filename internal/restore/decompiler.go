@@ -25,7 +25,7 @@ func isParserV1(wxapkg *config.WxapkgInfo) bool {
 	}
 }
 
-func isParserV3(wxapkg *config.WxapkgInfo) bool {
+func isParserV2(wxapkg *config.WxapkgInfo) bool {
 	switch wxapkg.WxapkgType {
 	case enum.App_V3, enum.App_V4, enum.APP_SUBPACKAGE_V2, enum.APP_PLUGIN_V1:
 		return true
@@ -89,6 +89,7 @@ func (d *WxapkgDecompiler) Decompile(outputDir string) {
 
 	wxapkgManager := config.GetWxapkgManager()
 	for _, wxapkg := range wxapkgManager.Packages {
+		log.Println(wxapkg.WxapkgType)
 		switch wxapkg.WxapkgType {
 		case enum.App_V1, enum.App_V4:
 			wxapkg.Option = &config.WxapkgOption{
@@ -152,8 +153,39 @@ func setApp(wxapkg *config.WxapkgInfo) {
 	}
 
 	wxapkg.Parsers = append(wxapkg.Parsers, &unpack.JavaScriptParser{OutputDir: OutputDir})
+	wxapkg.Parsers = append(wxapkg.Parsers, &unpack.XssParser{OutputDir: OutputDir})
+	if isParserV1(wxapkg) {
+		wxapkg.Parsers = append(wxapkg.Parsers, &unpack.XmlParser{OutputDir: OutputDir, Version: "v1"})
+	} else if isParserV2(wxapkg) {
+		wxapkg.Parsers = append(wxapkg.Parsers, &unpack.XmlParser{OutputDir: OutputDir, Version: "v2"})
+	}
+
+	// 清除无用文件
+	cleanApp(wxapkg.SourcePath)
 }
 
-func cleanApp() {
+func cleanApp(path string) {
+	// 创建文件删除管理器
+	manager := config.NewFileDeletionManager()
 
+	// 删除相关的JS文件, unlinks
+	unlinks := []string{
+		//".appservice.js",
+		"appservice.js",
+		"app-config.json",
+		"app-service.js",
+		"app-wxss.js",
+		"appservice.app.js",
+		"common.app.js",
+		"page-frame.js",
+		"page-frame.html",
+		"pageframe.js",
+		"webview.app.js",
+		"subContext.js",
+		"plugin.js",
+	}
+
+	for _, unlink := range unlinks {
+		manager.AddFile(filepath.Join(path, unlink))
+	}
 }

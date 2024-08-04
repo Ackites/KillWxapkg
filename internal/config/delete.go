@@ -54,6 +54,10 @@ func (f *FileDeletionManager) DeleteFiles() {
 			log.Println("文件删除操作已取消")
 			return
 		default:
+			// 判断文件是否存在
+			if _, err := os.Stat(file); os.IsNotExist(err) {
+				continue
+			}
 			err := os.Remove(file)
 			if err != nil {
 				log.Printf("删除文件 %s 失败: %v\n", file, err)

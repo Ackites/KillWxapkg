@@ -39,8 +39,19 @@ func ProjectStructure(outputDir string, restoreDir bool) {
 		return
 	}
 
+	configManager := config.NewSharedConfigManager()
+
 	// 创建文件删除管理器
 	manager := config.NewFileDeletionManager()
+
+	defer func() {
+		if noClean, ok := configManager.Get("noClean"); ok {
+			if !noClean.(bool) {
+				// 执行删除文件操作
+				manager.DeleteFiles()
+			}
+		}
+	}()
 
 	// 包管理器
 	wxakpgManager := config.GetWxapkgManager()
@@ -60,7 +71,4 @@ func ProjectStructure(outputDir string, restoreDir bool) {
 	// 创建命令执行器, 执行解析器
 	executor := NewCommandExecutor(wxakpgManager)
 	executor.ExecuteAll()
-
-	// 执行删除文件操作
-	manager.DeleteFiles()
 }
