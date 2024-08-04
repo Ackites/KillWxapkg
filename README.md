@@ -1,6 +1,7 @@
 # KillWxapkg
 
-> 纯Golang实现，一个用于自动化反编译微信小程序的工具，小程序安全利器，自动解密，解包，可最大程度还原工程目录
+> 纯Golang实现，一个用于自动化反编译微信小程序的工具，小程序安全利器，
+> 自动解密，解包，可还原工程目录，支持微信开发者工具运行
 
 [![stable](https://img.shields.io/badge/stable-stable-green.svg)](https://github.com/Ackites/KillWxapkg)
 [![license](https://img.shields.io/github/license/Ackites/KillWxapkg)]()
@@ -31,23 +32,24 @@
 - [x] 支持还原源代码工程目录结构
   - [x] Json配置文件还原
   - [x] JavaScript代码还原
-  - [ ] Wxml代码还原
-  - [ ] Wxss代码还原
-- [ ] 转换 Uni-app 项目
+  - [x] Wxml代码还原
+  - [x] Wxss代码还原
+- [ ] 支持小游戏
 - [ ] 敏感数据导出
 
 ### 工程结构还原
 
-<div style="display: flex">
-  <div>
-    <h4>还原前</h4>
-    <img src="./images/img.png" width="30%">
-  </div>
-  <div>
-    <h4>还原后</h4>
-    <img src="./images/img1.png" width="30%">
-  </div>
-</div>
+#### 还原前
+
+<img src="./images/img4.png" width="30%">
+
+#### 还原后
+
+<img src="./images/img5.png" width="30%">
+
+#### 微信开发者工具运行
+
+<img src="./images/img6.png" width="30%">
 
 ## 安装
 
@@ -69,7 +71,8 @@
 
 ## 用法
 
-> -id=<输入AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> [-ext=<文件后缀>] [-restore] [-pretty] 
+> -id=<输入AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> 
+> [-ext=<文件后缀>] [-restore] [-pretty] [-noClean] [-help]
 
 ### 参数说明
 - `-id string`
@@ -89,8 +92,10 @@
 - `-pretty`
     - 是否美化输出，默认不美化，美化需较长时间
 - `-ext string`
-  - 处理的文件后缀 (default ".wxapkg")
-  - 例：-ext=.wxapkg
+    - 处理的文件后缀 (default ".wxapkg")
+    - 例：-ext=.wxapkg
+- `-noClean`
+    - 是否清理反编译的中间文件，默认清理
 - `-help`
     - 显示帮助信息
 
