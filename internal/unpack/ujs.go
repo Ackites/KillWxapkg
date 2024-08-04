@@ -66,6 +66,20 @@ func (p *JavaScriptParser) Parse(option config.WxapkgInfo) error {
 		return fmt.Errorf("failed to read file: %w", err)
 	}
 
+	// 防止报错
+	patch := `var window={};var navigator={};navigator.userAgent="iPhone";window.screen={};document={};function require(){};`
+
+	scriptcode := patch + string(code)
+
+	// 包裹 try...catch 语句以捕获 JavaScript 错误
+	safeScript := `
+	try {
+		` + string(scriptcode) + `
+	} catch (e) {
+		//console.error(e);
+	}
+	`
+
 	vm := goja.New()
 
 	// 定义 console 对象
@@ -85,41 +99,48 @@ func (p *JavaScriptParser) Parse(option config.WxapkgInfo) error {
 		}
 		return goja.Undefined()
 	})
+	_ = console.Set("warn", func(call goja.FunctionCall) goja.Value {
+		args := call.Arguments
+		for _, arg := range args {
+			fmt.Println("WARN:", arg.String())
+		}
+		return goja.Undefined()
+	})
 	_ = vm.Set("console", console)
 
-	// 提供 __g 变量的默认实现
-	err = vm.Set("__g", make(map[string]interface{}))
-	if err != nil {
-		return err
-	}
-
-	// 提供  __wxConfig 变量的默认实现
-	err = vm.Set("__wxConfig", make(map[string]interface{}))
-	if err != nil {
-		return err
-	}
-
-	// 提供 global 变量的默认实现
-	err = vm.Set("global", make(map[string]interface{}))
-	if err != nil {
-		return err
-	}
-
-	err = vm.Set("__vd_version_info__", map[string]interface{}{
-		"version": "1.0.0",
-		"build":   "default",
-	})
-	if err != nil {
-		return err
-	}
-
-	wxAppCode := make(map[string]func())
-	// 设置 __wxAppCode__
-	err = vm.Set("__wxAppCode__", wxAppCode)
-	if err != nil {
-		log.Printf("Error setting __wxAppCode__: %v\n", err)
-		return err
-	}
+	//// 提供 __g 变量的默认实现
+	//err = vm.Set("__g", make(map[string]interface{}))
+	//if err != nil {
+	//	return err
+	//}
+	//
+	//// 提供  __wxConfig 变量的默认实现
+	//err = vm.Set("__wxConfig", make(map[string]interface{}))
+	//if err != nil {
+	//	return err
+	//}
+	//
+	//// 提供 global 变量的默认实现
+	//err = vm.Set("global", make(map[string]interface{}))
+	//if err != nil {
+	//	return err
+	//}
+	//
+	//err = vm.Set("__vd_version_info__", map[string]interface{}{
+	//	"version": "1.0.0",
+	//	"build":   "default",
+	//})
+	//if err != nil {
+	//	return err
+	//}
+	//
+	//wxAppCode := make(map[string]func())
+	//// 设置 __wxAppCode__
+	//err = vm.Set("__wxAppCode__", wxAppCode)
+	//if err != nil {
+	//	log.Printf("Error setting __wxAppCode__: %v\n", err)
+	//	return err
+	//}
 
 	// 设置 define 函数和 require 函数的行为
 	err = vm.Set("define", func(call goja.FunctionCall) goja.Value {
@@ -141,7 +162,7 @@ func (p *JavaScriptParser) Parse(option config.WxapkgInfo) error {
 		//	cleanedCode = cleanedCode[25 : len(cleanedCode)-5]
 		//}
 
-		err = saveToFile(filepath.Join(dir, moduleName), []byte(cleanedCode))
+		err = save(filepath.Join(dir, moduleName), []byte(cleanedCode))
 		if err != nil {
 			log.Printf("Error saving file: %v\n", err)
 		}
@@ -151,43 +172,29 @@ func (p *JavaScriptParser) Parse(option config.WxapkgInfo) error {
 		return err
 	}
 
-	err = vm.Set("require", func(call goja.FunctionCall) goja.Value {
-		// 返回一个空对象，表示对 require 的任何调用都将返回这个空对象
-		result := vm.NewObject()
-		return result
-	})
-	if err != nil {
-		return err
-	}
+	//err = vm.Set("require", func(call goja.FunctionCall) goja.Value {
+	//	// 返回一个空对象，表示对 require 的任何调用都将返回这个空对象
+	//	result := vm.NewObject()
+	//	return result
+	//})
+	//if err != nil {
+	//	return err
+	//}
+	//
+	//// 设置 $gwx 变量
+	//err = vm.Set("$gwx", func(call goja.FunctionCall) goja.Value {
+	//	// $gwx function implementation here
+	//	return goja.Undefined()
+	//})
+	//if err != nil {
+	//	return err
+	//}
 
-	// 设置 $gwx 变量
-	err = vm.Set("$gwx", func(call goja.FunctionCall) goja.Value {
-		// $gwx function implementation here
-		return goja.Undefined()
-	})
-	if err != nil {
-		return err
-	}
-
-	_, err = vm.RunString(string(code))
+	_, err = vm.RunString(safeScript)
 	if err != nil {
 		return fmt.Errorf("failed to run JavaScript: %w", err)
 	}
 
 	log.Printf("Splitting \"%s\" done.", option.Option.ServiceSource)
-	return nil
-}
-
-// saveToFile 保存文件内容
-func saveToFile(filePath string, content []byte) error {
-	err := os.MkdirAll(filepath.Dir(filePath), 0755)
-	if err != nil {
-		return fmt.Errorf("failed to create directories: %w", err)
-	}
-	err = os.WriteFile(filePath, content, 0755)
-	if err != nil {
-		log.Printf("Save file error: %v\n", err)
-		return fmt.Errorf("failed to write file: %w", err)
-	}
 	return nil
 }
