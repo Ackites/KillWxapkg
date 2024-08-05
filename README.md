@@ -34,7 +34,7 @@
   - [x] JavaScript代码还原
   - [x] Wxml代码还原
   - [x] Wxss代码还原
-- [ ] Hook小程序，动态调试，开启小程序F12
+- [x] Hook小程序，动态调试，开启小程序F12
 - [ ] 支持小游戏
 - [ ] 敏感数据导出
 
@@ -73,7 +73,7 @@
 ## 用法
 
 > -id=<输入AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> 
-> [-ext=<文件后缀>] [-restore] [-pretty] [-noClean] [-help]
+> [-ext=<文件后缀>] [-restore] [-pretty] [-noClean] [-help] [-hook]
 
 ### 参数说明
 - `-id string`
@@ -97,6 +97,9 @@
     - 例：-ext=.wxapkg
 - `-noClean`
     - 是否清理反编译的中间文件，默认清理
+- `-hook`
+    - 是否Hook小程序，动态调试，开启F12，默认不Hook
+    - 注意：目前仅支持Windows
 - `-help`
     - 显示帮助信息
 
