@@ -55,7 +55,7 @@ func DetermineOutputDir(input, appID string) string {
 }
 
 // ProcessFile 合并目录
-func ProcessFile(inputFile, outputDir, appID string) error {
+func ProcessFile(inputFile, outputDir, appID string, save bool) error {
 	log.Printf("开始处理文件: %s\n", inputFile)
 
 	manager := GetWxapkgManager()
@@ -81,12 +81,15 @@ func ProcessFile(inputFile, outputDir, appID string) error {
 		return fmt.Errorf("创建输出目录失败: %v", err)
 	}
 
-	err = os.WriteFile(decryptedFilePath, decryptedData, 0755)
-	if err != nil {
-		return fmt.Errorf("保存解密文件失败: %v", err)
-	}
+	// 是否保存解密后的文件
+	if save {
+		err = os.WriteFile(decryptedFilePath, decryptedData, 0755)
+		if err != nil {
+			return fmt.Errorf("保存解密文件失败: %v", err)
+		}
 
-	log.Printf("文件解密并保存到: %s\n", decryptedFilePath)
+		log.Printf("文件解密并保存到: %s\n", decryptedFilePath)
+	}
 
 	// 解包到临时目录
 	tempDir, err := os.MkdirTemp("", "wxapkg")

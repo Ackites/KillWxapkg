@@ -17,6 +17,7 @@ var (
 	pretty     bool
 	noClean    bool
 	hook       bool
+	save       bool
 )
 
 func init() {
@@ -28,6 +29,7 @@ func init() {
 	flag.BoolVar(&pretty, "pretty", false, "是否美化输出")
 	flag.BoolVar(&noClean, "noClean", false, "是否清理中间文件")
 	flag.BoolVar(&hook, "hook", false, "是否开启动态调试")
+	flag.BoolVar(&save, "save", false, "是否保存解密后的文件")
 }
 
 func main() {
@@ -53,12 +55,12 @@ func main() {
 	}
 
 	if appID == "" || input == "" {
-		fmt.Println("使用方法: program -id=<AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> [-ext=<文件后缀>] [-restore] [-pretty] [-noClean] [-hook]")
+		fmt.Println("使用方法: program -id=<AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> [-ext=<文件后缀>] [-restore] [-pretty] [-noClean] [-hook] [-save]")
 		flag.PrintDefaults()
 		fmt.Println()
 		return
 	}
 
 	// 执行命令
-	cmd.Execute(appID, input, outputDir, fileExt, restoreDir, pretty, noClean)
+	cmd.Execute(appID, input, outputDir, fileExt, restoreDir, pretty, noClean, save)
 }
