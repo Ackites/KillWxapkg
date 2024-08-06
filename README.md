@@ -35,6 +35,8 @@
   - [x] Wxml代码还原
   - [x] Wxss代码还原
 - [x] Hook小程序，动态调试，开启小程序F12
+- [x] 重新打包小程序，可破解小程序
+  - [x] 监视将要打包的文件夹，并自动打包
 - [ ] 支持小游戏
 - [ ] 敏感数据导出
 
@@ -87,6 +89,24 @@
 
 <img src="./images/img9.jpg" width="60%">
 
+### 重新打包运行，可破解小程序
+
+```shell
+<本程序> -repack=<输入目录> [-out=<输出目录或文件>] [-watch]
+ ```
+
+<img src="./images/img10.png" width="30%">
+
+#### 效果示例
+
+**修改前**
+
+<img src="./images/img11.png" width="30%">
+
+**修改后**
+
+<img src="./images/img12.png" width="30%">
+
 ## 安装
 
 - 下载最新版本的[release](https://github.com/Ackites/KillWxapkg/releases)包
@@ -108,7 +128,7 @@
 ## 用法
 
 > -id=<输入AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> 
-> [-ext=<文件后缀>] [-restore] [-pretty] [-noClean] [-help] [-hook] [-save]
+> [-ext=<文件后缀>] [-restore] [-pretty] [-noClean] [-help] [-hook] [-save] [-repack=<输入目录>] [-watch]
 
 ### 参数说明
 - `-id string`
@@ -134,9 +154,15 @@
     - 是否清理反编译的中间文件，默认清理
 - `-hook`
     - 是否Hook小程序，动态调试，开启F12，默认不Hook
-    - 注意：目前仅支持Windows
+    - **注意：目前仅支持Windows**
 - `-save`
     - 是否保存解密后的文件，默认不保存
+- `-repack string`
+    - 重新打包目录路径
+    - 例：-repack="C:\Users\mi\Desktop\Applet\64"
+    - **注意：目前仅支持一次打包一个文件，同时仅支持未被解析的源文件（未使用-restore）**
+- `-watch`
+    - 是否监听将要打包的文件夹，并自动打包，默认不监视
 - `-help`
     - 显示帮助信息
 

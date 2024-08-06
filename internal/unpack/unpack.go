@@ -154,18 +154,18 @@ func UnpackWxapkg(data []byte, outputDir string) ([]string, error) {
 		return nil, <-errChan
 	}
 
-	const configJSON = `{
-        "description": "See https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
-        "setting": {
-          "urlCheck": false
-        }
-      }`
+	//const configJSON = `{
+	//    "description": "See https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+	//    "setting": {
+	//      "urlCheck": false
+	//    }
+	//  }`
 
-	// 保存 project.config.json
-	configFile := filepath.Join(outputDir, "project.private.config.json")
-	if err := os.WriteFile(configFile, []byte(configJSON), 0755); err != nil {
-		return nil, fmt.Errorf("保存文件 %s 失败: %w", configFile, err)
-	}
+	// 保存 project.private.config.json
+	//configFile := filepath.Join(outputDir, "project.private.config.json")
+	//if err := os.WriteFile(configFile, []byte(configJSON), 0755); err != nil {
+	//	return nil, fmt.Errorf("保存文件 %s 失败: %w", configFile, err)
+	//}
 
 	return filelistNames, nil
 }

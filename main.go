@@ -4,6 +4,8 @@ import (
 	"flag"
 	"fmt"
 
+	"github.com/Ackites/KillWxapkg/internal/pack"
+
 	"github.com/Ackites/KillWxapkg/cmd"
 	hook2 "github.com/Ackites/KillWxapkg/internal/hook"
 )
@@ -18,6 +20,8 @@ var (
 	noClean    bool
 	hook       bool
 	save       bool
+	repack     string
+	watch      bool
 )
 
 func init() {
@@ -30,6 +34,8 @@ func init() {
 	flag.BoolVar(&noClean, "noClean", false, "是否清理中间文件")
 	flag.BoolVar(&hook, "hook", false, "是否开启动态调试")
 	flag.BoolVar(&save, "save", false, "是否保存解密后的文件")
+	flag.StringVar(&repack, "repack", "", "重新打包wxapkg文件")
+	flag.BoolVar(&watch, "watch", false, "是否监听将要打包的文件夹，并自动打包")
 }
 
 func main() {
@@ -44,7 +50,7 @@ func main() {
 | |\  \| | | |    \  /   / /_/ / (_| \__ \   <| | | |
 \_| \_/_|_|_|     \/    \__,_|\__,_|___/_|\_\_| |_|
                                                     
-             Wxapkg Decompiler Tool v2.1.0
+             Wxapkg Decompiler Tool v2.2.0
     `
 	fmt.Println(banner)
 
@@ -54,8 +60,14 @@ func main() {
 		return
 	}
 
+	// 重新打包
+	if repack != "" {
+		pack.Repack(repack, watch, outputDir)
+		return
+	}
+
 	if appID == "" || input == "" {
-		fmt.Println("使用方法: program -id=<AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> [-ext=<文件后缀>] [-restore] [-pretty] [-noClean] [-hook] [-save]")
+		fmt.Println("使用方法: program -id=<AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> [-ext=<文件后缀>] [-restore] [-pretty] [-noClean] [-hook] [-save] [-repack=<输入目录>] [-watch]")
 		flag.PrintDefaults()
 		fmt.Println()
 		return
