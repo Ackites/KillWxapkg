@@ -95,7 +95,7 @@
 <本程序> -repack=<输入目录> [-out=<输出目录或文件>] [-watch]
  ```
 
-<img src="./images/img10.png" width="30%">
+<img src="./images/img10.png" width="70%">
 
 #### 效果示例
 
