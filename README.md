@@ -85,7 +85,7 @@
 <本程序> -hook
  ```
 
-<img src="./images/img9.png" width="30%">
+<img src="./images/img9.jpg" width="30%">
 
 ## 安装
 
