@@ -75,6 +75,18 @@
 <img src="./images/img7.png" width="30%">
 <img src="./images/img8.png" width="30%">
 
+#### 开启小程序F12
+
+> 运行前先启动微信（建议小号,有被封号风险）
+
+**运行✅**
+
+```shell
+<本程序> -hook
+ ```
+
+<img src="./images/img9.png" width="30%">
+
 ## 安装
 
 - 下载最新版本的[release](https://github.com/Ackites/KillWxapkg/releases)包
@@ -96,7 +108,7 @@
 ## 用法
 
 > -id=<输入AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> 
-> [-ext=<文件后缀>] [-restore] [-pretty] [-noClean] [-help] [-hook]
+> [-ext=<文件后缀>] [-restore] [-pretty] [-noClean] [-help] [-hook] [-save]
 
 ### 参数说明
 - `-id string`
