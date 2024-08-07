@@ -50,7 +50,7 @@ func main() {
 | |\  \| | | |    \  /   / /_/ / (_| \__ \   <| | | |
 \_| \_/_|_|_|     \/    \__,_|\__,_|___/_|\_\_| |_|
                                                     
-             Wxapkg Decompiler Tool v2.2.0
+             Wxapkg Decompiler Tool v2.2.1
     `
 	fmt.Println(banner)
 
