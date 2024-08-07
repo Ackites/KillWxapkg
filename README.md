@@ -75,8 +75,10 @@
 
 #### 如何查看当前运行版本？
 
-<img src="./images/img7.png" width="30%">
-<img src="./images/img8.png" width="30%">
+<div style="display: flex ">
+  <img src="./images/img7.png" width="30%">
+  <img src="./images/img8.png" width="30%">
+</div>
 
 #### 开启小程序F12
 
@@ -98,13 +100,10 @@
 
 #### 效果示例
 
-**修改前**
-
-<img src="./images/img11.png" width="30%">
-
-**修改后**
-
-<img src="./images/img12.png" width="30%">
+<div style="display: flex ">
+  <img src="./images/img11.png" width="30%">
+  <img src="./images/img12.png" width="30%">
+</div>
 
 ## 安装
 
