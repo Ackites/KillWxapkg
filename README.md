@@ -42,13 +42,16 @@
 
 ### 工程结构还原
 
-#### 还原前
-
-<img src="./images/img4.png" width="30%">
-
-#### 还原后
-
-<img src="./images/img5.png" width="30%">
+<div style="display: flex ">
+  <div>
+    <h4>还原前</h4>
+    <img src="./images/img4.png" width="30%">
+  </div>
+  <div>
+    <h4>还原后</h4>
+    <img src="./images/img5.png" width="30%"> 
+  </div>
+</div>
 
 #### 微信开发者工具运行
 
