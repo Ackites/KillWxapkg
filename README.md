@@ -93,7 +93,7 @@
 
 <img src="./images/img9.jpg" width="60%">
 
-### 重新打包运行，可破解小程序
+### 重新打包运行
 
 ```shell
 <本程序> -repack=<输入目录> [-out=<输出目录或文件>] [-watch]
