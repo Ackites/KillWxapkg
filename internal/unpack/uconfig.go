@@ -54,6 +54,12 @@ func changeExt(filename, newExt string) string {
 
 // save 保存内容到文件
 func save(filename string, content []byte) error {
+	// 处理文件路径
+	filename = filepath.ToSlash(filename)
+	if idx := strings.Index(filename, ":"); idx != -1 {
+		filename = filename[:idx+1] + strings.ReplaceAll(filename[idx+1:], ":", "")
+	}
+
 	// 判断目录是否存在
 	dir := filepath.Dir(filename)
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
@@ -240,7 +246,7 @@ func (p *ConfigParser) Parse(option config.WxapkgInfo) error {
 			windowContent, _ := json.MarshalIndent(e.Page[a].Window, "", "    ")
 			err = save(fileName, windowContent)
 			if err != nil {
-				return err
+				log.Printf("Error saving file %s: %v\n", fileName, err)
 			}
 		}
 	}
