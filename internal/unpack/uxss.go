@@ -115,7 +115,7 @@ func matchScripts(code string) string {
 }
 
 func getCss(mainCode string) string {
-	setRe := regexp.MustCompile(`setCssToHead\(([\s\S]*?)\.wxss"\}\)`)
+	setRe := regexp.MustCompile(`setCssToHead\(([\s\S]*?)\.wxss"\s*\}\)`)
 	comRe := regexp.MustCompile(`__COMMON_STYLESHEETS__\['([^']*\.wxss)'\]\s*=\s*\[(.*?)\];`)
 
 	var scriptBuilder strings.Builder
