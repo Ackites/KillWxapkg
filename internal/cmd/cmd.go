@@ -46,11 +46,17 @@ func ParseInput(input, fileExt string) []string {
 // DetermineOutputDir 确定输出目录
 func DetermineOutputDir(input, appID string) string {
 	var baseDir string
+
 	if fileInfo, err := os.Stat(input); err == nil && fileInfo.IsDir() {
 		baseDir = input
 	} else {
 		baseDir = filepath.Dir(input)
 	}
+
+	if appID == "" {
+		return filepath.Join(baseDir, "result")
+	}
+
 	return filepath.Join(baseDir, appID)
 }
 
