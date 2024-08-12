@@ -261,16 +261,17 @@ func (p *XmlParser) Parse(option config.WxapkgInfo) error {
 	codeStr := string(code)
 	scriptCode := codeStr
 
-	scriptCode = strings.Replace(scriptCode, "var setCssToHead =", "var setCssToHead2 =", 1)
-	scriptCode = strings.Replace(scriptCode, "var noCss", "var noCss2", -1)
-
 	// 防止报错
-	patch := `var noCss=true;var window={};var navigator={};navigator.userAgent="iPhone";window.screen={};document={};function define(){};function require(){};`
+	patch := `var noCss=true;var window={};var navigator={};navigator.userAgent="iPhone";window.screen={};
+document={getElementsByTagName:()=>{}};function define(){};function require(){};`
 
 	// 如果是 html 文件，提取 script 代码
 	if strings.HasSuffix(frameFile, ".html") {
 		scriptCode = matchScripts(codeStr)
 	}
+
+	scriptCode = strings.Replace(scriptCode, "var setCssToHead =", "var setCssToHead2 =", 1)
+	scriptCode = strings.Replace(scriptCode, "var noCss", "var noCss2", -1)
 
 	// 正则匹配生成函数
 	getFuc(scriptCode, gwx)
