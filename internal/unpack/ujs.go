@@ -67,7 +67,8 @@ func (p *JavaScriptParser) Parse(option config.WxapkgInfo) error {
 	}
 
 	// 防止报错
-	patch := `var window={};var navigator={};navigator.userAgent="iPhone";window.screen={};document={};function require(){};`
+	patch := `var window={};var navigator={};navigator.userAgent="iPhone";window.screen={};
+document={getElementsByTagName:()=>{}};function require(){};`
 
 	scriptcode := patch + string(code)
 
@@ -114,12 +115,12 @@ func (p *JavaScriptParser) Parse(option config.WxapkgInfo) error {
 	//	return err
 	//}
 	//
-	//// 提供  __wxConfig 变量的默认实现
-	//err = vm.Set("__wxConfig", make(map[string]interface{}))
-	//if err != nil {
-	//	return err
-	//}
-	//
+	// 提供  __wxConfig 变量的默认实现
+	err = vm.Set("__wxConfig", make(map[string]interface{}))
+	if err != nil {
+		return err
+	}
+
 	//// 提供 global 变量的默认实现
 	//err = vm.Set("global", make(map[string]interface{}))
 	//if err != nil {
