@@ -68,7 +68,7 @@ func handleEl(el interface{}, k string) string {
 				return ""
 			}
 			if target != "" {
-				return fmt.Sprintf(`@import "%s";\n`, target)
+				return fmt.Sprintf(`@import "%s";`+"\n", target)
 			}
 
 			return ""
