@@ -23,15 +23,11 @@ type XmlParser struct {
 
 // 获取生成函数
 func getFuc(code string, gwx map[string]interface{}) {
-	re := regexp.MustCompile(`else __wxAppCode__\['([^']+\.wxml)'\]\s*=\s*([^;]+;)`)
+	re := regexp.MustCompile(`else\s+__wxAppCode__\['([^']+\.wxml)'\]\s*=\s*(\$[^;]+;)`)
 
-	// 匹配生成函数
 	matches := re.FindAllStringSubmatch(code, -1)
 	if len(matches) > 0 {
 		for _, match := range matches {
-			if !strings.HasPrefix(match[2], "$") {
-				continue
-			}
 			gwx[match[1]] = match[2]
 		}
 	}
@@ -272,6 +268,10 @@ document={getElementsByTagName:()=>{}};function define(){};function require(){};
 
 	scriptCode = strings.Replace(scriptCode, "var setCssToHead =", "var setCssToHead2 =", 1)
 	scriptCode = strings.Replace(scriptCode, "var noCss", "var noCss2", -1)
+	// 如果是子包
+	if isSubpackage(&option) {
+		scriptCode = strings.Replace(scriptCode, "$gwx('init', global);", "", 1)
+	}
 
 	// 正则匹配生成函数
 	getFuc(scriptCode, gwx)
