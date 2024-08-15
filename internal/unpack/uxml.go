@@ -259,14 +259,15 @@ func (p *XmlParser) Parse(option config.WxapkgInfo) error {
 
 	// 防止报错
 	patch := `var noCss=true;var window={};var navigator={};navigator.userAgent="iPhone";window.screen={};
-document={getElementsByTagName:()=>{}};function define(){};function require(){};`
+document={getElementsByTagName:()=>{}};function define(){};function require(){};
+var setCssToHead=function(file,_xcInvalid,info){return ()=>{}};`
 
 	// 如果是 html 文件，提取 script 代码
 	if strings.HasSuffix(frameFile, ".html") {
 		scriptCode = matchScripts(codeStr)
 	}
 
-	scriptCode = strings.Replace(scriptCode, "var setCssToHead =", "var setCssToHead2 =", 1)
+	scriptCode = strings.Replace(scriptCode, "var setCssToHead =", "var setCssToHead2 =", -1)
 	scriptCode = strings.Replace(scriptCode, "var noCss", "var noCss2", -1)
 	// 如果是子包
 	if isSubpackage(&option) {
