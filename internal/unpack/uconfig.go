@@ -139,7 +139,11 @@ func (p *ConfigParser) Parse(option config.WxapkgInfo) error {
 				}
 			}
 			subPackage.Root = root
-			subPackage.Pages = newPages
+			if len(newPages) == 0 {
+				subPackage.Pages = []string{}
+			} else {
+				subPackage.Pages = newPages
+			}
 			subPackages = append(subPackages, subPackage)
 		}
 		app.SubPackages = subPackages
