@@ -105,6 +105,7 @@ func skipValue(l *css.Lexer, sb *strings.Builder, inDeclarationBlock *bool) {
 func readValue(l *css.Lexer, sb *strings.Builder, initialContent string, inDeclarationBlock *bool) {
 	// 第一个冒号
 	var colon int64 = 1
+	var isLeftBrace bool = false
 	var isRightBrace bool = false
 
 	var value bytes.Buffer
@@ -117,6 +118,10 @@ func readValue(l *css.Lexer, sb *strings.Builder, initialContent string, inDecla
 		if tokenType == css.SemicolonToken {
 			break
 		}
+		if tokenType == css.LeftBraceToken {
+			isLeftBrace = true
+			break
+		}
 		if tokenType == css.RightBraceToken {
 			isRightBrace = true
 			break
@@ -126,7 +131,13 @@ func readValue(l *css.Lexer, sb *strings.Builder, initialContent string, inDecla
 	if shouldRemoveValue(value.String()) {
 		resetStringBuilder(sb, initialContent)
 	} else {
-		sb.WriteString(": " + value.String() + ";\n")
+		if isLeftBrace {
+			sb.WriteString(" {\n")
+			*inDeclarationBlock = true
+			return
+		} else {
+			sb.WriteString(": " + value.String() + ";\n")
+		}
 		if isRightBrace {
 			sb.WriteString("}\n")
 			*inDeclarationBlock = false
