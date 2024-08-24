@@ -22,6 +22,7 @@ var (
 	save       bool
 	repack     string
 	watch      bool
+	sensitive  bool
 )
 
 func init() {
@@ -36,6 +37,7 @@ func init() {
 	flag.BoolVar(&save, "save", false, "是否保存解密后的文件")
 	flag.StringVar(&repack, "repack", "", "重新打包wxapkg文件")
 	flag.BoolVar(&watch, "watch", false, "是否监听将要打包的文件夹，并自动打包")
+	flag.BoolVar(&sensitive, "sensitive", false, "是否获取敏感数据")
 }
 
 func main() {
@@ -67,12 +69,12 @@ func main() {
 	}
 
 	if appID == "" || input == "" {
-		fmt.Println("使用方法: program -id=<AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> [-ext=<文件后缀>] [-restore] [-pretty] [-noClean] [-hook] [-save] [-repack=<输入目录>] [-watch]")
+		fmt.Println("使用方法: program -id=<AppID> -in=<输入文件1,输入文件2> 或 -in=<输入目录> -out=<输出目录> [-ext=<文件后缀>] [-restore] [-pretty] [-noClean] [-hook] [-save] [-repack=<输入目录>] [-watch] [-sensitive]")
 		flag.PrintDefaults()
 		fmt.Println()
 		return
 	}
 
 	// 执行命令
-	cmd.Execute(appID, input, outputDir, fileExt, restoreDir, pretty, noClean, save)
+	cmd.Execute(appID, input, outputDir, fileExt, restoreDir, pretty, noClean, save, sensitive)
 }

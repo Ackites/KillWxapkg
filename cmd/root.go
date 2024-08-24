@@ -9,7 +9,7 @@ import (
 	"github.com/Ackites/KillWxapkg/internal/restore"
 )
 
-func Execute(appID, input, outputDir, fileExt string, restoreDir bool, pretty bool, noClean bool, save bool) {
+func Execute(appID, input, outputDir, fileExt string, restoreDir bool, pretty bool, noClean bool, save bool, sensitive bool) {
 	// 存储配置
 	configManager := NewSharedConfigManager()
 	configManager.Set("appID", appID)
@@ -20,6 +20,7 @@ func Execute(appID, input, outputDir, fileExt string, restoreDir bool, pretty bo
 	configManager.Set("pretty", pretty)
 	configManager.Set("noClean", noClean)
 	configManager.Set("save", save)
+	configManager.Set("sensitive", sensitive)
 
 	inputFiles := ParseInput(input, fileExt)
 

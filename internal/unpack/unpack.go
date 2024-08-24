@@ -10,6 +10,10 @@ import (
 	"path/filepath"
 	"sync"
 
+	"github.com/Ackites/KillWxapkg/internal/key"
+
+	"github.com/Ackites/KillWxapkg/internal/config"
+
 	formatter2 "github.com/Ackites/KillWxapkg/internal/formatter"
 )
 
@@ -219,6 +223,18 @@ func processFile(outputDir string, file WxapkgFile, reader io.ReaderAt, bufferPo
 	// 写入文件内容
 	if _, err := f.Write(content); err != nil {
 		return fmt.Errorf("写入文件失败: %w", err)
+	}
+
+	configManager := config.NewSharedConfigManager()
+	if sensitive, ok := configManager.Get("sensitive"); ok {
+		if p, o := sensitive.(bool); o {
+			if p {
+				// 查找敏感信息
+				if err := key.MatchRules(string(content)); err != nil {
+					return fmt.Errorf("%v", err)
+				}
+			}
+		}
 	}
 
 	return nil
