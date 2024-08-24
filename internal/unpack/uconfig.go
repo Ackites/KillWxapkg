@@ -138,6 +138,18 @@ func (p *ConfigParser) Parse(option config.WxapkgInfo) error {
 					i++
 				}
 			}
+
+			// 去除重复的页面
+			pageSet := make(map[string]struct{})
+			var uniquePages []string
+			for _, page := range newPages {
+				if _, exists := pageSet[page]; !exists {
+					pageSet[page] = struct{}{}
+					uniquePages = append(uniquePages, page)
+				}
+			}
+			newPages = uniquePages
+
 			subPackage.Root = root
 			if len(newPages) == 0 {
 				subPackage.Pages = []string{}
