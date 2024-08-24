@@ -91,7 +91,15 @@ func getDomTree(node interface{}) string {
 			// 处理属性
 			if attr, ok := node["attr"].(map[string]interface{}); ok {
 				for key, value := range attr {
-					sb.WriteString(fmt.Sprintf(" %s=\"%v\"", key, value))
+					key = strings.TrimPrefix(key, "$wxs:")
+					if strings.HasPrefix(key, "$") {
+						continue
+					}
+					if value == nil {
+						sb.WriteString(fmt.Sprintf(" %s=\"\"", key))
+					} else {
+						sb.WriteString(fmt.Sprintf(" %s=\"%v\"", key, value))
+					}
 				}
 			}
 
