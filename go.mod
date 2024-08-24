@@ -4,7 +4,7 @@ go 1.23
 
 require (
 	github.com/ditashi/jsbeautifier-go v0.0.0-20141206144643-2520a8026a9c
-	github.com/dop251/goja v0.0.0-20240806095544-3491d4a58fbe
+	github.com/dop251/goja v0.0.0-20240822155948-fa6d1ed5e4b6
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/tdewolff/parse/v2 v2.7.15
 	github.com/yosssi/gohtml v0.0.0-20201013000340-ee4748c638f4
