@@ -86,6 +86,7 @@ func CreateConfigFile() {
 			{Id: "grafana_cloud_api_token", Enabled: true, Pattern: `\bglc_[A-Za-z0-9\-_+/]{32,200}={0,2}\b`},
 			{Id: "grafana_service_account_token", Enabled: true, Pattern: `\bglsa_[A-Za-z0-9]{32}_[A-Fa-f0-9]{8}\b`},
 			{Id: "app_key", Enabled: true, Pattern: `\b(?:VUE|APP|REACT)_[A-Z_0-9]{1,15}_(?:KEY|PASS|PASSWORD|TOKEN|APIKEY)['"]*[:=]"(?:[A-Za-z0-9_\-]{15,50}|[a-z0-9/+]{50,100}==?)"`},
+			{Id: "腾讯文档", Enabled: true, Pattern: `\bhttps://docs.qq.com/[a-z0-9\-]*/+[a-zA-Z0-9\-_]*`},
 		},
 	}
 

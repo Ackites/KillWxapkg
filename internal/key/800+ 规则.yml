@@ -1,0 +1,2197 @@
+rules:
+  - id: AWS ARN secret 
+    enabled: true
+    pattern: arn:aws:[a-z0-9-]+:[a-z]{2}-[a-z]+-[0-9]+:[0-9]+:.+
+  - id: AWS Access Key ID Value secret 
+    enabled: true
+    pattern: (A3T[A-Z0-9]|AKIA|AGPA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
+  - id: AWS AppSync GraphQL Key secret 
+    enabled: true
+    pattern: da2-[a-z0-9]{26}
+  - id: AWS MWS key secret 
+    enabled: true
+    pattern: amzn\.mws\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}
+  - id: AWS S3 Bucket secret 
+    enabled: true
+    pattern: s3://[0-9a-z._/-]+
+  - id: AWS cred file info secret 
+    enabled: true
+    pattern: (aws_access_key_id|aws_secret_access_key)
+  - id: Abbysale secret 
+    enabled: true
+    pattern: (?:abbysale).{0,40}\b([a-z0-9A-Z]{40})\b
+  - id: Abstract secret 
+    enabled: true
+    pattern: (?:abstract).{0,40}\b([0-9a-z]{32})\b
+  - id: Abuseipdb secret 
+    enabled: true
+    pattern: (?:abuseipdb).{0,40}\b([a-z0-9]{80})\b
+  - id: Accuweather secret 
+    enabled: true
+    pattern: (?:accuweather).{0,40}([a-z0-9A-Z\%]{35})\b
+  - id: Adafruitio secret 
+    enabled: true
+    pattern: \b(aio\_[a-zA-Z0-9]{28})\b
+  - id: Adobeio - 1 secret 
+    enabled: true
+    pattern: (?:adobe).{0,40}\b([a-z0-9]{32})\b
+  - id: Adzuna - 1 secret 
+    enabled: true
+    pattern: (?:adzuna).{0,40}\b([a-z0-9]{8})\b
+  - id: Adzuna - 2 secret 
+    enabled: true
+    pattern: (?:adzuna).{0,40}\b([a-z0-9]{32})\b
+  - id: Aeroworkflow - 1 secret 
+    enabled: true
+    pattern: (?:aeroworkflow).{0,40}\b([0-9]{1,})\b
+  - id: Aeroworkflow - 2 secret 
+    enabled: true
+    pattern: (?:aeroworkflow).{0,40}\b([a-zA-Z0-9^!]{20})\b
+  - id: Agora secret 
+    enabled: true
+    pattern: (?:agora).{0,40}\b([a-z0-9]{32})\b
+  - id: Airbrakeprojectkey - 1 secret 
+    enabled: true
+    pattern: (?:airbrake).{0,40}\b([0-9]{6})\b
+  - id: Airbrakeprojectkey - 2 secret 
+    enabled: true
+    pattern: (?:airbrake).{0,40}\b([a-zA-Z-0-9]{32})\b
+  - id: Airbrakeuserkey secret 
+    enabled: true
+    pattern: (?:airbrake).{0,40}\b([a-zA-Z-0-9]{40})\b
+  - id: Airship secret 
+    enabled: true
+    pattern: (?:airship).{0,40}\b([0-9Aa-zA-Z]{91})\b
+  - id: Airvisual secret 
+    enabled: true
+    pattern: (?:airvisual).{0,40}\b([a-z0-9-]{36})\b
+  - id: Alconost secret 
+    enabled: true
+    pattern: (?:alconost).{0,40}\b([0-9Aa-z]{32})\b
+  - id: Alegra - 1 secret 
+    enabled: true
+    pattern: (?:alegra).{0,40}\b([a-z0-9-]{20})\b
+  - id: Alegra - 2 secret 
+    enabled: true
+    pattern: (?:alegra).{0,40}\b([a-zA-Z0-9.-@]{25,30})\b
+  - id: Aletheiaapi secret 
+    enabled: true
+    pattern: (?:aletheiaapi).{0,40}\b([A-Z0-9]{32})\b
+  - id: Alibaba - 2 secret 
+    enabled: true
+    pattern: \b(LTAI[a-zA-Z0-9]{17,21})
+  - id: Alienvault secret 
+    enabled: true
+    pattern: (?:alienvault).{0,40}\b([a-z0-9]{64})\b
+  - id: Allsports secret 
+    enabled: true
+    pattern: (?:allsports).{0,40}\b([0-9a-z]{64})\b
+  - id: Amadeus - 1 secret 
+    enabled: true
+    pattern: (?:amadeus).{0,40}\b([0-9A-Za-z]{32})\b
+  - id: Amadeus - 2 secret 
+    enabled: true
+    pattern: (?:amadeus).{0,40}\b([0-9A-Za-z]{16})\b
+  - id: Ambee secret 
+    enabled: true
+    pattern: (?:ambee).{0,40}\b([0-9a-f]{64})\b
+  - id: Amplitudeapikey secret 
+    enabled: true
+    pattern: (?:amplitude).{0,40}\b([a-f0-9]{32})
+  - id: Apacta secret 
+    enabled: true
+    pattern: (?:apacta).{0,40}\b([a-z0-9-]{36})\b
+  - id: Api2cart secret 
+    enabled: true
+    pattern: (?:api2cart).{0,40}\b([0-9a-f]{32})\b
+  - id: Apideck - 1 secret 
+    enabled: true
+    pattern: \b(sk_live_[a-z0-9A-Z-]{93})\b
+  - id: Apideck - 2 secret 
+    enabled: true
+    pattern: (?:apideck).{0,40}\b([a-z0-9A-Z]{40})\b
+  - id: Apiflash - 1 secret 
+    enabled: true
+    pattern: (?:apiflash).{0,40}\b([a-z0-9]{32})\b
+  - id: Apiflash - 2 secret 
+    enabled: true
+    pattern: (?:apiflash).{0,40}\b([a-zA-Z0-9\S]{21,30})\b
+  - id: Apifonica secret 
+    enabled: true
+    pattern: (?:apifonica).{0,40}\b([0-9a-z]{11}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12})\b
+  - id: Apify secret 
+    enabled: true
+    pattern: \b(apify\_api\_[a-zA-Z-0-9]{36})\b
+  - id: Apimatic - 1 secret 
+    enabled: true
+    pattern: (?:apimatic).{0,40}\b([a-z0-9-\S]{8,32})\b
+  - id: Apimatic - 2 secret 
+    enabled: true
+    pattern: (?:apimatic).{0,40}\b([a-zA-Z0-9]{3,20}@[a-zA-Z0-9]{2,12}.[a-zA-Z0-9]{2,5})\b
+  - id: Apiscience secret 
+    enabled: true
+    pattern: (?:apiscience).{0,40}\b([a-bA-Z0-9\S]{22})\b
+  - id: Apollo secret 
+    enabled: true
+    pattern: (?:apollo).{0,40}\b([a-zA-Z0-9]{22})\b
+  - id: Appcues - 1 secret 
+    enabled: true
+    pattern: (?:appcues).{0,40}\b([0-9]{5})\b
+  - id: Appcues - 2 secret 
+    enabled: true
+    pattern: (?:appcues).{0,40}\b([a-z0-9-]{36})\b
+  - id: Appcues - 3 secret 
+    enabled: true
+    pattern: (?:appcues).{0,40}\b([a-z0-9-]{39})\b
+  - id: Appfollow secret 
+    enabled: true
+    pattern: (?:appfollow).{0,40}\b([0-9A-Za-z]{20})\b
+  - id: Appsynergy secret 
+    enabled: true
+    pattern: (?:appsynergy).{0,40}\b([a-z0-9]{64})\b
+  - id: Apptivo - 1 secret 
+    enabled: true
+    pattern: (?:apptivo).{0,40}\b([a-z0-9-]{36})\b
+  - id: Apptivo - 2 secret 
+    enabled: true
+    pattern: (?:apptivo).{0,40}\b([a-zA-Z0-9-]{32})\b
+  - id: Artifactory - 2 secret 
+    enabled: true
+    pattern: \b([A-Za-z0-9](?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9])\.jfrog\.io)
+  - id: Artsy - 1 secret 
+    enabled: true
+    pattern: (?:artsy).{0,40}\b([0-9a-zA-Z]{20})\b
+  - id: Artsy - 2 secret 
+    enabled: true
+    pattern: (?:artsy).{0,40}\b([0-9a-zA-Z]{32})\b
+  - id: Asanaoauth secret 
+    enabled: true
+    pattern: (?:asana).{0,40}\b([a-z\/:0-9]{51})\b
+  - id: Asanapersonalaccesstoken secret 
+    enabled: true
+    pattern: (?:asana).{0,40}\b([0-9]{1,}\/[0-9]{16,}:[A-Za-z0-9]{32,})\b
+  - id: Assemblyai secret 
+    enabled: true
+    pattern: (?:assemblyai).{0,40}\b([0-9a-z]{32})\b
+  - id: Asymmetric Private Key secret 
+    enabled: true
+    pattern: -----BEGIN ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----
+  - id: Audd secret 
+    enabled: true
+    pattern: (?:audd).{0,40}\b([a-z0-9-]{32})\b
+  - id: Auth0managementapitoken secret 
+    enabled: true
+    pattern: (?:auth0).{0,40}\b(ey[a-zA-Z0-9._-]+)\b
+  - id: Autodesk - 1 secret 
+    enabled: true
+    pattern: (?:autodesk).{0,40}\b([0-9A-Za-z]{32})\b
+  - id: Autodesk - 2 secret 
+    enabled: true
+    pattern: (?:autodesk).{0,40}\b([0-9A-Za-z]{16})\b
+  - id: Autoklose secret 
+    enabled: true
+    pattern: (?:autoklose).{0,40}\b([a-zA-Z0-9-]{32})\b
+  - id: Autopilot secret 
+    enabled: true
+    pattern: (?:autopilot).{0,40}\b([0-9a-f]{32})\b
+  - id: Avazapersonalaccesstoken secret 
+    enabled: true
+    pattern: (?:avaza).{0,40}\b([0-9]+-[0-9a-f]{40})\b
+  - id: Aviationstack secret 
+    enabled: true
+    pattern: (?:aviationstack).{0,40}\b([a-z0-9]{32})\b
+  - id: Aws - 1 secret 
+    enabled: true
+    pattern: \b((?:AKIA|ABIA|ACCA|ASIA)[0-9A-Z]{16})\b
+  - id: Axonaut secret 
+    enabled: true
+    pattern: (?:axonaut).{0,40}\b([a-z0-9]{32})\b
+  - id: Aylien - 1 secret 
+    enabled: true
+    pattern: (?:aylien).{0,40}\b([a-z0-9]{32})\b
+  - id: Aylien - 2 secret 
+    enabled: true
+    pattern: (?:aylien).{0,40}\b([a-z0-9]{8})\b
+  - id: Ayrshare secret 
+    enabled: true
+    pattern: (?:ayrshare).{0,40}\b([A-Z]{7}-[A-Z0-9]{7}-[A-Z0-9]{7}-[A-Z0-9]{7})\b
+  - id: Bannerbear secret 
+    enabled: true
+    pattern: (?:bannerbear).{0,40}\b([0-9a-zA-Z]{22}tt)\b
+  - id: Baremetrics secret 
+    enabled: true
+    pattern: (?:baremetrics).{0,40}\b([a-zA-Z0-9_]{25})\b
+  - id: Baseapiio secret 
+    enabled: true
+    pattern: (?:baseapi|base-api).{0,40}\b([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b
+  - id: Beamer secret 
+    enabled: true
+    pattern: (?:beamer).{0,40}\b([a-zA-Z0-9_+/]{45}=)
+  - id: Beebole secret 
+    enabled: true
+    pattern: (?:beebole).{0,40}\b([0-9a-z]{40})\b
+  - id: Besttime secret 
+    enabled: true
+    pattern: (?:besttime).{0,40}\b([0-9A-Za-z_]{36})\b
+  - id: Billomat - 1 secret 
+    enabled: true
+    pattern: (?:billomat).{0,40}\b([0-9a-z]{1,})\b
+  - id: Billomat - 2 secret 
+    enabled: true
+    pattern: (?:billomat).{0,40}\b([0-9a-z]{32})\b
+  - id: Bitbar secret 
+    enabled: true
+    pattern: (?:bitbar).{0,40}\b([0-9a-z]{32})\b
+  - id: Bitcoinaverage secret 
+    enabled: true
+    pattern: (?:bitcoinaverage).{0,40}\b([a-zA-Z0-9]{43})\b
+  - id: Bitfinex secret 
+    enabled: true
+    pattern: (?:bitfinex).{0,40}\b([A-Za-z0-9_-]{43})\b
+  - id: Bitly Secret Key secret 
+    enabled: true
+    pattern: R_[0-9a-f]{32}
+  - id: Bitlyaccesstoken secret 
+    enabled: true
+    pattern: (?:bitly).{0,40}\b([a-zA-Z-0-9]{40})\b
+  - id: Bitmex - 1 secret 
+    enabled: true
+    pattern: (?:bitmex).{0,40}([ \r\n]{1}[0-9a-zA-Z\-\_]{24}[ \r\n]{1})
+  - id: Bitmex - 2 secret 
+    enabled: true
+    pattern: (?:bitmex).{0,40}([ \r\n]{1}[0-9a-zA-Z\-\_]{48}[ \r\n]{1})
+  - id: Blablabus secret 
+    enabled: true
+    pattern: (?:blablabus).{0,40}\b([0-9A-Za-z]{22})\b
+  - id: Blazemeter secret 
+    enabled: true
+    pattern: (?:blazemeter|runscope).{0,40}\b([0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12})\b
+  - id: Blitapp secret 
+    enabled: true
+    pattern: (?:blitapp).{0,40}\b([a-zA-Z0-9_-]{39})\b
+  - id: Bombbomb secret 
+    enabled: true
+    pattern: (?:bombbomb).{0,40}\b([a-zA-Z0-9-._]{704})\b
+  - id: Boostnote secret 
+    enabled: true
+    pattern: (?:boostnote).{0,40}\b([0-9a-f]{64})\b
+  - id: Borgbase secret 
+    enabled: true
+    pattern: (?:borgbase).{0,40}\b([a-zA-Z0-9/_.-]{148,152})\b
+  - id: Braintree API Key secret 
+    enabled: true
+    pattern: access_token$production$[0-9a-z]{16}$[0-9a-f]{32}
+  - id: Brandfetch secret 
+    enabled: true
+    pattern: (?:brandfetch).{0,40}\b([0-9A-Za-z]{40})\b
+  - id: Browshot secret 
+    enabled: true
+    pattern: (?:browshot).{0,40}\b([a-zA-Z-0-9]{28})\b
+  - id: Buddyns secret 
+    enabled: true
+    pattern: (?:buddyns).{0,40}\b([0-9a-z]{40})\b
+  - id: Bugherd secret 
+    enabled: true
+    pattern: (?:bugherd).{0,40}\b([0-9a-z]{22})\b
+  - id: Bugsnag secret 
+    enabled: true
+    pattern: (?:bugsnag).{0,40}\b([0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12})\b
+  - id: Buildkite secret 
+    enabled: true
+    pattern: (?:buildkite).{0,40}\b([a-z0-9]{40})\b
+  - id: Bulbul secret 
+    enabled: true
+    pattern: (?:bulbul).{0,40}\b([a-z0-9]{32})\b
+  - id: Buttercms secret 
+    enabled: true
+    pattern: (?:buttercms).{0,40}\b([a-z0-9]{40})\b
+  - id: Caflou secret 
+    enabled: true
+    pattern: (?:caflou).{0,40}\b([a-bA-Z0-9\S]{155})\b
+  - id: Calendarific secret 
+    enabled: true
+    pattern: (?:calendarific).{0,40}\b([a-z0-9]{40})\b
+  - id: Calendlyapikey secret 
+    enabled: true
+    pattern: (?:calendly).{0,40}\b([a-zA-Z-0-9]{20}.[a-zA-Z-0-9]{171}.[a-zA-Z-0-9_]{43})\b
+  - id: Calorieninja secret 
+    enabled: true
+    pattern: (?:calorieninja).{0,40}\b([0-9A-Za-z]{40})\b
+  - id: Campayn secret 
+    enabled: true
+    pattern: (?:campayn).{0,40}\b([a-z0-9]{64})\b
+  - id: Cannyio secret 
+    enabled: true
+    pattern: (?:canny).{0,40}\b([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[0-9]{4}-[a-z0-9]{12})\b
+  - id: Capsulecrm secret 
+    enabled: true
+    pattern: (?:capsulecrm).{0,40}\b([a-zA-Z0-9-._+=]{64})\b
+  - id: Captaindata - 1 secret 
+    enabled: true
+    pattern: (?:captaindata).{0,40}\b([0-9a-f]{8}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{12})\b
+  - id: Captaindata - 2 secret 
+    enabled: true
+    pattern: (?:captaindata).{0,40}\b([0-9a-f]{64})\b
+  - id: Carboninterface secret 
+    enabled: true
+    pattern: (?:carboninterface).{0,40}\b([a-zA-Z0-9]{21})\b
+  - id: Cashboard - 1 secret 
+    enabled: true
+    pattern: (?:cashboard).{0,40}\b([0-9A-Z]{3}-[0-9A-Z]{3}-[0-9A-Z]{3}-[0-9A-Z]{3})\b
+  - id: Cashboard - 2 secret 
+    enabled: true
+    pattern: (?:cashboard).{0,40}\b([0-9a-z]{1,})\b
+  - id: Caspio - 1 secret 
+    enabled: true
+    pattern: (?:caspio).{0,40}\b([a-z0-9]{8})\b
+  - id: Caspio - 2 secret 
+    enabled: true
+    pattern: (?:caspio).{0,40}\b([a-z0-9]{50})\b
+  - id: Censys - 1 secret 
+    enabled: true
+    pattern: (?:censys).{0,40}\b([a-zA-Z0-9]{32})\b
+  - id: Censys - 2 secret 
+    enabled: true
+    pattern: (?:censys).{0,40}\b([a-z0-9-]{36})\b
+  - id: Centralstationcrm secret 
+    enabled: true
+    pattern: (?:centralstation).{0,40}\b([a-z0-9]{30})\b
+  - id: Cexio - 1 secret 
+    enabled: true
+    pattern: (?:cexio|cex.io).{0,40}\b([a-z]{2}[0-9]{9})\b
+  - id: Cexio - 2 secret 
+    enabled: true
+    pattern: (?:cexio|cex.io).{0,40}\b([0-9A-Za-z]{24,27})\b
+  - id: Chatbot secret 
+    enabled: true
+    pattern: (?:chatbot).{0,40}\b([a-zA-Z0-9_]{32})\b
+  - id: Chatfule secret 
+    enabled: true
+    pattern: (?:chatfuel).{0,40}\b([a-zA-Z0-9]{128})\b
+  - id: Checio secret 
+    enabled: true
+    pattern: (?:checio).{0,40}\b(pk_[a-z0-9]{45})\b
+  - id: Checklyhq secret 
+    enabled: true
+    pattern: (?:checklyhq).{0,40}\b([a-z0-9]{32})\b
+  - id: Checkout - 1 secret 
+    enabled: true
+    pattern: (?:checkout).{0,40}\b((sk_|sk_test_)[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})\b
+  - id: Checkout - 2 secret 
+    enabled: true
+    pattern: (?:checkout).{0,40}\b(cus_[0-9a-zA-Z]{26})\b
+  - id: Checkvist - 1 secret 
+    enabled: true
+    pattern: (?:checkvist).{0,40}\b([\w\.-]+@[\w-]+\.[\w\.-]{2,5})\b
+  - id: Checkvist - 2 secret 
+    enabled: true
+    pattern: (?:checkvist).{0,40}\b([0-9a-zA-Z]{14})\b
+  - id: Cicero secret 
+    enabled: true
+    pattern: (?:cicero).{0,40}\b([0-9a-z]{40})\b
+  - id: Clearbit secret 
+    enabled: true
+    pattern: (?:clearbit).{0,40}\b([0-9a-z_]{35})\b
+  - id: Clickhelp - 1 secret 
+    enabled: true
+    pattern: \b([0-9A-Za-z]{3,20}.try.clickhelp.co)\b
+  - id: Clickhelp - 2 secret 
+    enabled: true
+    pattern: (?:clickhelp).{0,40}\b([0-9A-Za-z]{24})\b
+  - id: Clicksendsms - 2 secret 
+    enabled: true
+    pattern: (?:sms).{0,40}\b([a-zA-Z0-9]{3,20}@[a-zA-Z0-9]{2,12}.[a-zA-Z0-9]{2,5})\b
+  - id: Clickuppersonaltoken secret 
+    enabled: true
+    pattern: (?:clickup).{0,40}\b(pk_[0-9]{8}_[0-9A-Z]{32})\b
+  - id: Cliengo secret 
+    enabled: true
+    pattern: (?:cliengo).{0,40}\b([0-9a-f]{8}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{12})\b
+  - id: Clinchpad secret 
+    enabled: true
+    pattern: (?:clinchpad).{0,40}\b([a-z0-9]{32})\b
+  - id: Clockify secret 
+    enabled: true
+    pattern: (?:clockify).{0,40}\b([a-zA-Z0-9]{48})\b
+  - id: Clockworksms - 1 secret 
+    enabled: true
+    pattern: (?:clockwork|textanywhere).{0,40}\b([0-9a-zA-Z]{24})\b
+  - id: Clockworksms - 2 secret 
+    enabled: true
+    pattern: (?:clockwork|textanywhere).{0,40}\b([0-9]{5})\b
+  - id: Closecrm secret 
+    enabled: true
+    pattern: \b(api_[a-z0-9A-Z.]{45})\b
+  - id: Cloudelements - 1 secret 
+    enabled: true
+    pattern: (?:cloudelements).{0,40}\b([a-z0-9]{32})\b
+  - id: Cloudelements - 2 secret 
+    enabled: true
+    pattern: (?:cloudelements).{0,40}\b([a-zA-Z0-9]{43})\b
+  - id: Cloudflarecakey secret 
+    enabled: true
+    pattern: (?:cloudflare).{0,40}\b(v[A-Za-z0-9._-]{173,})\b
+  - id: Cloudimage secret 
+    enabled: true
+    pattern: (?:cloudimage).{0,40}\b([a-z0-9_]{30})\b
+  - id: Cloudinary Credentials secret 
+    enabled: true
+    pattern: cloudinary://[0-9]+:[A-Za-z0-9\-_\.]+@[A-Za-z0-9\-_\.]+
+  - id: Cloudmersive secret 
+    enabled: true
+    pattern: (?:cloudmersive).{0,40}\b([a-z0-9-]{36})\b
+  - id: Cloudplan secret 
+    enabled: true
+    pattern: (?:cloudplan).{0,40}\b([A-Z0-9-]{32})\b
+  - id: Cloverly secret 
+    enabled: true
+    pattern: (?:cloverly).{0,40}\b([a-z0-9:_]{28})\b
+  - id: Cloze - 1 secret 
+    enabled: true
+    pattern: (?:cloze).{0,40}\b([0-9a-f]{32})\b
+  - id: Cloze - 2 secret 
+    enabled: true
+    pattern: (?:cloze).{0,40}\b([\w\.-]+@[\w-]+\.[\w\.-]{2,5})\b
+  - id: Clustdoc secret 
+    enabled: true
+    pattern: (?:clustdoc).{0,40}\b([0-9a-zA-Z]{60})\b
+  - id: Codacy secret 
+    enabled: true
+    pattern: (?:codacy).{0,40}\b([0-9A-Za-z]{20})\b
+  - id: Coinapi secret 
+    enabled: true
+    pattern: (?:coinapi).{0,40}\b([A-Z0-9-]{36})\b
+  - id: Coinbase secret 
+    enabled: true
+    pattern: (?:coinbase).{0,40}\b([a-zA-Z-0-9]{64})\b
+  - id: Coinlayer secret 
+    enabled: true
+    pattern: (?:coinlayer).{0,40}\b([a-z0-9]{32})\b
+  - id: Coinlib secret 
+    enabled: true
+    pattern: (?:coinlib).{0,40}\b([a-z0-9]{16})\b
+  - id: Column secret 
+    enabled: true
+    pattern: (?:column).{0,40}\b((?:test|live)_[a-zA-Z0-9]{27})\b
+  - id: Commercejs secret 
+    enabled: true
+    pattern: (?:commercejs).{0,40}\b([a-z0-9_]{48})\b
+  - id: Commodities secret 
+    enabled: true
+    pattern: (?:commodities).{0,40}\b([a-zA-Z0-9]{60})\b
+  - id: Companyhub - 1 secret 
+    enabled: true
+    pattern: (?:companyhub).{0,40}\b([0-9a-zA-Z]{20})\b
+  - id: Companyhub - 2 secret 
+    enabled: true
+    pattern: (?:companyhub).{0,40}\b([a-zA-Z0-9$%^=-]{4,32})\b
+  - id: Confluent - 1 secret 
+    enabled: true
+    pattern: (?:confluent).{0,40}\b([a-zA-Z-0-9]{16})\b
+  - id: Confluent - 2 secret 
+    enabled: true
+    pattern: (?:confluent).{0,40}\b([a-zA-Z-0-9]{64})\b
+  - id: Convertkit secret 
+    enabled: true
+    pattern: (?:convertkit).{0,40}\b([a-z0-9A-Z_]{22})\b
+  - id: Convier secret 
+    enabled: true
+    pattern: (?:convier).{0,40}\b([0-9]{2}\|[a-zA-Z0-9]{40})\b
+  - id: Copper - 2 secret 
+    enabled: true
+    pattern: (?:copper).{0,40}\b([a-z0-9]{32})\b
+  - id: Countrylayer secret 
+    enabled: true
+    pattern: (?:countrylayer).{0,40}\b([a-z0-9]{32})\b
+  - id: Courier secret 
+    enabled: true
+    pattern: (?:courier).{0,40}\b(pk\_[a-zA-Z0-9]{1,}\_[a-zA-Z0-9]{28})\b
+  - id: Coveralls secret 
+    enabled: true
+    pattern: (?:coveralls).{0,40}\b([a-zA-Z0-9-]{37})\b
+  - id: Crowdin secret 
+    enabled: true
+    pattern: (?:crowdin).{0,40}\b([0-9A-Za-z]{80})\b
+  - id: Cryptocompare secret 
+    enabled: true
+    pattern: (?:cryptocompare).{0,40}\b([a-z-0-9]{64})\b
+  - id: Currencycloud - 1 secret 
+    enabled: true
+    pattern: (?:currencycloud).{0,40}\b([0-9a-z]{64})\b
+  - id: Currencyfreaks secret 
+    enabled: true
+    pattern: (?:currencyfreaks).{0,40}\b([0-9a-z]{32})\b
+  - id: Currencylayer secret 
+    enabled: true
+    pattern: (?:currencylayer).{0,40}\b([a-z0-9]{32})\b
+  - id: Currencyscoop secret 
+    enabled: true
+    pattern: (?:currencyscoop).{0,40}\b([a-z0-9]{32})\b
+  - id: Currentsapi secret 
+    enabled: true
+    pattern: (?:currentsapi).{0,40}\b([a-zA-Z0-9\S]{48})\b
+  - id: Customerguru - 1 secret 
+    enabled: true
+    pattern: (?:guru).{0,40}\b([a-z0-9A-Z]{50})\b
+  - id: Customerguru - 2 secret 
+    enabled: true
+    pattern: (?:guru).{0,40}\b([a-z0-9A-Z]{30})\b
+  - id: D7network secret 
+    enabled: true
+    pattern: (?:d7network).{0,40}\b([a-zA-Z0-9\W\S]{23}\=)
+  - id: Dailyco secret 
+    enabled: true
+    pattern: (?:daily).{0,40}\b([0-9a-f]{64})\b
+  - id: Dandelion secret 
+    enabled: true
+    pattern: (?:dandelion).{0,40}\b([a-z0-9]{32})\b
+  - id: Databricks secret 
+    enabled: true
+    pattern: dapi[a-f0-9]{32}\b
+  - id: Datafire secret 
+    enabled: true
+    pattern: (?:datafire).{0,40}\b([a-z0-9\S]{175,190})\b
+  - id: Datagov secret 
+    enabled: true
+    pattern: (?:data.gov).{0,40}\b([a-zA-Z0-9]{40})\b
+  - id: Deepai secret 
+    enabled: true
+    pattern: (?:deepai).{0,40}\b([a-z0-9-]{36})\b
+  - id: Deepgram secret 
+    enabled: true
+    pattern: (?:deepgram).{0,40}\b([0-9a-z]{40})\b
+  - id: Delighted secret 
+    enabled: true
+    pattern: (?:delighted).{0,40}\b([a-z0-9A-Z]{32})\b
+  - id: Deputy - 1 secret 
+    enabled: true
+    pattern: \b([0-9a-z]{1,}.as.deputy.com)\b
+  - id: Deputy - 2 secret 
+    enabled: true
+    pattern: (?:deputy).{0,40}\b([0-9a-z]{32})\b
+  - id: Detectlanguage secret 
+    enabled: true
+    pattern: (?:detectlanguage).{0,40}\b([a-z0-9]{32})\b
+  - id: Dfuse secret 
+    enabled: true
+    pattern: \b(web\_[0-9a-z]{32})\b
+  - id: Diffbot secret 
+    enabled: true
+    pattern: (?:diffbot).{0,40}\b([a-z0-9]{32})\b
+  - id: Digitaloceantoken secret 
+    enabled: true
+    pattern: (?:digitalocean).{0,40}\b([A-Za-z0-9_-]{64})\b
+  - id: Discord Webhook secret 
+    enabled: true
+    pattern: https://discordapp\.com/api/webhooks/[0-9]+/[A-Za-z0-9\-]+
+  - id: Discordbottoken - 1 secret 
+    enabled: true
+    pattern: (?:discord).{0,40}\b([A-Za-z0-9_-]{24}\.[A-Za-z0-9_-]{6}\.[A-Za-z0-9_-]{27})\b
+  - id: Discordbottoken - 2 secret 
+    enabled: true
+    pattern: (?:discord).{0,40}\b([0-9]{17})\b
+  - id: Discordwebhook secret 
+    enabled: true
+    pattern: (https:\/\/discord.com\/api\/webhooks\/[0-9]{18}\/[0-9a-zA-Z-]{68})
+  - id: Ditto secret 
+    enabled: true
+    pattern: (?:ditto).{0,40}\b([a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12}\.[a-z0-9]{40})\b
+  - id: Dnscheck - 1 secret 
+    enabled: true
+    pattern: (?:dnscheck).{0,40}\b([a-z0-9A-Z-]{36})\b
+  - id: Dnscheck - 2 secret 
+    enabled: true
+    pattern: (?:dnscheck).{0,40}\b([a-z0-9A-Z]{32})\b
+  - id: Documo secret 
+    enabled: true
+    pattern: \b(ey[a-zA-Z0-9]{34}.ey[a-zA-Z0-9]{154}.[a-zA-Z0-9_-]{43})\b
+  - id: Doppler secret 
+    enabled: true
+    pattern: \b(dp\.pt\.[a-zA-Z0-9]{43})\b
+  - id: Dotmailer - 1 secret 
+    enabled: true
+    pattern: (?:dotmailer).{0,40}\b(apiuser-[a-z0-9]{12}@apiconnector.com)\b
+  - id: Dotmailer - 2 secret 
+    enabled: true
+    pattern: (?:dotmailer).{0,40}\b([a-zA-Z0-9\S]{8,24})\b
+  - id: Dovico secret 
+    enabled: true
+    pattern: (?:dovico).{0,40}\b([0-9a-z]{32}\.[0-9a-z]{1,}\b)
+  - id: Dronahq secret 
+    enabled: true
+    pattern: (?:dronahq).{0,40}\b([a-z0-9]{50})\b
+  - id: Droneci secret 
+    enabled: true
+    pattern: (?:droneci).{0,40}\b([a-zA-Z0-9]{32})\b
+  - id: Dropbox secret 
+    enabled: true
+    pattern: \b(sl\.[A-Za-z0-9\-\_]{130,140})\b
+  - id: Dwolla secret 
+    enabled: true
+    pattern: (?:dwolla).{0,40}\b([a-zA-Z-0-9]{50})\b
+  - id: Dynalist secret 
+    enabled: true
+    pattern: (?:dynalist).{0,40}\b([a-zA-Z0-9-_]{128})\b
+  - id: Dynatrace token secret 
+    enabled: true
+    pattern: dt0[a-zA-Z]{1}[0-9]{2}\.[A-Z0-9]{24}\.[A-Z0-9]{64}
+  - id: Dyspatch secret 
+    enabled: true
+    pattern: (?:dyspatch).{0,40}\b([A-Z0-9]{52})\b
+  - id: EC secret 
+    enabled: true
+    pattern: -----BEGIN EC PRIVATE KEY-----
+  - id: Eagleeyenetworks - 1 secret 
+    enabled: true
+    pattern: (?:eagleeyenetworks).{0,40}\b([a-zA-Z0-9]{3,20}@[a-zA-Z0-9]{2,12}.[a-zA-Z0-9]{2,5})\b
+  - id: Eagleeyenetworks - 2 secret 
+    enabled: true
+    pattern: (?:eagleeyenetworks).{0,40}\b([a-zA-Z0-9]{15})\b
+  - id: Easyinsight - 1 secret 
+    enabled: true
+    pattern: (?:easyinsight|easy-insight).{0,40}\b([a-zA-Z0-9]{20})\b
+  - id: Easyinsight - 2 secret 
+    enabled: true
+    pattern: (?:easyinsight|easy-insight).{0,40}\b([0-9Aa-zA-Z]{20})\b
+  - id: Edamam - 1 secret 
+    enabled: true
+    pattern: (?:edamam).{0,40}\b([0-9a-z]{32})\b
+  - id: Edamam - 2 secret 
+    enabled: true
+    pattern: (?:edamam).{0,40}\b([0-9a-z]{8})\b
+  - id: Edenai secret 
+    enabled: true
+    pattern: (?:edenai).{0,40}\b([a-zA-Z0-9]{36}.[a-zA-Z0-9]{92}.[a-zA-Z0-9_]{43})\b
+  - id: Eightxeight - 2 secret 
+    enabled: true
+    pattern: (?:8x8).{0,40}\b([a-zA-Z0-9]{43})\b
+  - id: Elasticemail secret 
+    enabled: true
+    pattern: (?:elastic).{0,40}\b([A-Za-z0-9_-]{96})\b
+  - id: Enablex - 1 secret 
+    enabled: true
+    pattern: (?:enablex).{0,40}\b([a-zA-Z0-9]{36})\b
+  - id: Enablex - 2 secret 
+    enabled: true
+    pattern: (?:enablex).{0,40}\b([a-z0-9]{24})\b
+  - id: Enigma secret 
+    enabled: true
+    pattern: (?:enigma).{0,40}\b([a-zA-Z0-9]{40})\b
+  - id: Ethplorer secret 
+    enabled: true
+    pattern: (?:ethplorer).{0,40}\b([a-z0-9A-Z-]{22})\b
+  - id: Everhour secret 
+    enabled: true
+    pattern: (?:everhour).{0,40}\b([0-9Aa-f]{4}-[0-9a-f]{4}-[0-9a-f]{6}-[0-9a-f]{6}-[0-9a-f]{8})\b
+  - id: Exchangerateapi secret 
+    enabled: true
+    pattern: (?:exchangerate).{0,40}\b([a-z0-9]{24})\b
+  - id: Exchangeratesapi secret 
+    enabled: true
+    pattern: (?:exchangerates).{0,40}\b([a-z0-9]{32})\b
+  - id: Facebook Access Token secret 
+    enabled: true
+    pattern: EAACEdEose0cBA[0-9A-Za-z]+
+  - id: Faceplusplus secret 
+    enabled: true
+    pattern: (?:faceplusplus).{0,40}\b([0-9a-zA-Z_-]{32})\b
+  - id: Fakejson secret 
+    enabled: true
+    pattern: (?:fakejson).{0,40}\b([a-zA-Z0-9]{22})\b
+  - id: Fastforex secret 
+    enabled: true
+    pattern: (?:fastforex).{0,40}\b([a-z0-9-]{28})\b
+  - id: Fastlypersonaltoken secret 
+    enabled: true
+    pattern: (?:fastly).{0,40}\b([A-Za-z0-9_-]{32})\b
+  - id: Feedier secret 
+    enabled: true
+    pattern: (?:feedier).{0,40}\b([a-z0-9A-Z]{32})\b
+  - id: Fetchrss secret 
+    enabled: true
+    pattern: (?:fetchrss).{0,40}\b([0-9A-Za-z.]{40})\b
+  - id: Figmapersonalaccesstoken secret 
+    enabled: true
+    pattern: (?:figma).{0,40}\b([0-9]{6}-[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12})\b
+  - id: Fileio secret 
+    enabled: true
+    pattern: (?:fileio).{0,40}\b([A-Z0-9.-]{39})\b
+  - id: Finage secret 
+    enabled: true
+    pattern: \b(API_KEY[0-9A-Z]{32})\b
+  - id: Financialmodelingprep secret 
+    enabled: true
+    pattern: (?:financialmodelingprep).{0,40}\b([a-zA-Z0-9]{32})\b
+  - id: Findl secret 
+    enabled: true
+    pattern: (?:findl).{0,40}\b([a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12})\b
+  - id: Finnhub secret 
+    enabled: true
+    pattern: (?:finnhub).{0,40}\b([0-9a-z]{20})\b
+  - id: Fixerio secret 
+    enabled: true
+    pattern: (?:fixer).{0,40}\b([A-Za-z0-9]{32})\b
+  - id: Flatio secret 
+    enabled: true
+    pattern: (?:flat).{0,40}\b([0-9a-z]{128})\b
+  - id: Fleetbase secret 
+    enabled: true
+    pattern: \b(flb_live_[0-9a-zA-Z]{20})\b
+  - id: Flickr secret 
+    enabled: true
+    pattern: (?:flickr).{0,40}\b([0-9a-z]{32})\b
+  - id: Flightapi secret 
+    enabled: true
+    pattern: (?:flightapi).{0,40}\b([a-z0-9]{24})\b
+  - id: Flightstats - 1 secret 
+    enabled: true
+    pattern: (?:flightstats).{0,40}\b([0-9a-z]{32})\b
+  - id: Flightstats - 2 secret 
+    enabled: true
+    pattern: (?:flightstats).{0,40}\b([0-9a-z]{8})\b
+  - id: Flowflu - 2 secret 
+    enabled: true
+    pattern: (?:flowflu).{0,40}\b([a-zA-Z0-9]{51})\b
+  - id: Flutterwave secret 
+    enabled: true
+    pattern: \b(FLWSECK-[0-9a-z]{32}-X)\b
+  - id: Fmfw - 1 secret 
+    enabled: true
+    pattern: (?:fmfw).{0,40}\b([a-zA-Z0-9-]{32})\b
+  - id: Fmfw - 2 secret 
+    enabled: true
+    pattern: (?:fmfw).{0,40}\b([a-zA-Z0-9_-]{32})\b
+  - id: Formbucket secret 
+    enabled: true
+    pattern: (?:formbucket).{0,40}\b([0-9A-Za-z]{1,}.[0-9A-Za-z]{1,}\.[0-9A-Z-a-z\-_]{1,})
+  - id: Formio secret 
+    enabled: true
+    pattern: (?:formio).{0,40}\b(eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[0-9A-Za-z]{310}\.[0-9A-Z-a-z\-_]{43}[ \r\n]{1})
+  - id: Foursquare secret 
+    enabled: true
+    pattern: (?:foursquare).{0,40}\b([0-9A-Z]{48})\b
+  - id: Frameio secret 
+    enabled: true
+    pattern: \b(fio-u-[0-9a-zA-Z_-]{64})\b
+  - id: Freshbooks - 1 secret 
+    enabled: true
+    pattern: (?:freshbooks).{0,40}\b([0-9a-z]{64})\b
+  - id: Freshbooks - 2 secret 
+    enabled: true
+    pattern: (?:freshbooks).{0,40}\b(https://www.[0-9A-Za-z_-]{1,}.com)\b
+  - id: Freshdesk - 1 secret 
+    enabled: true
+    pattern: (?:freshdesk).{0,40}\b([0-9A-Za-z]{20})\b
+  - id: Freshdesk - 2 secret 
+    enabled: true
+    pattern: \b([0-9a-z-]{1,}.freshdesk.com)\b
+  - id: Front secret 
+    enabled: true
+    pattern: (?:front).{0,40}\b([0-9a-zA-Z]{36}.[0-9a-zA-Z\.\-\_]{188,244})\b
+  - id: Fulcrum secret 
+    enabled: true
+    pattern: (?:fulcrum).{0,40}\b([a-z0-9]{80})\b
+  - id: Fullstory secret 
+    enabled: true
+    pattern: (?:fullstory).{0,40}\b([a-zA-Z-0-9/+]{88})\b
+  - id: Fusebill secret 
+    enabled: true
+    pattern: (?:fusebill).{0,40}\b([a-zA-Z0-9]{88})\b
+  - id: Fxmarket secret 
+    enabled: true
+    pattern: (?:fxmarket).{0,40}\b([0-9Aa-zA-Z-_=]{20})\b
+  - id: Gcp secret 
+    enabled: true
+    pattern: \{[^{]+auth_provider_x509_cert_url[^}]+\}
+  - id: Geckoboard secret 
+    enabled: true
+    pattern: (?:geckoboard).{0,40}\b([a-zA-Z0-9]{44})\b
+  - id: Generic - 1376 secret 
+    enabled: true
+    pattern: jdbc:mysql(=| =|:| :)
+  - id: Generic - 1700 secret 
+    enabled: true
+    pattern: BEGIN OPENSSH PRIVATE KEY
+  - id: Generic - 1701 secret 
+    enabled: true
+    pattern: BEGIN PRIVATE KEY
+  - id: Generic - 1702 secret 
+    enabled: true
+    pattern: BEGIN RSA PRIVATE KEY
+  - id: Generic - 1703 secret 
+    enabled: true
+    pattern: BEGIN DSA PRIVATE KEY
+  - id: Generic - 1704 secret 
+    enabled: true
+    pattern: BEGIN EC PRIVATE KEY
+  - id: Generic - 1705 secret 
+    enabled: true
+    pattern: BEGIN PGP PRIVATE KEY BLOCK
+  - id: Generic - 1710 secret 
+    enabled: true
+    pattern: algolia_api_key
+  - id: Generic - 1711 secret 
+    enabled: true
+    pattern: asana_access_token
+  - id: Generic - 1713 secret 
+    enabled: true
+    pattern: azure_tenant
+  - id: Generic - 1714 secret 
+    enabled: true
+    pattern: bitly_access_token
+  - id: Generic - 1716 secret 
+    enabled: true
+    pattern: browserstack_access_key
+  - id: Generic - 1717 secret 
+    enabled: true
+    pattern: buildkite_access_token
+  - id: Generic - 1718 secret 
+    enabled: true
+    pattern: comcast_access_token
+  - id: Generic - 1719 secret 
+    enabled: true
+    pattern: datadog_api_key
+  - id: Generic - 1720 secret 
+    enabled: true
+    pattern: deviantart_secret
+  - id: Generic - 1721 secret 
+    enabled: true
+    pattern: deviantart_access_token
+  - id: Generic - 1722 secret 
+    enabled: true
+    pattern: dropbox_api_token
+  - id: Generic - 1723 secret 
+    enabled: true
+    pattern: facebook_appsecret
+  - id: Generic - 1724 secret 
+    enabled: true
+    pattern: facebook_access_token
+  - id: Generic - 1725 secret 
+    enabled: true
+    pattern: firebase_custom_token
+  - id: Generic - 1726 secret 
+    enabled: true
+    pattern: firebase_id_token
+  - id: Generic - 1727 secret 
+    enabled: true
+    pattern: github_client
+  - id: Generic - 1728 secret 
+    enabled: true
+    pattern: github_ssh_key
+  - id: Generic - 1730 secret 
+    enabled: true
+    pattern: gitlab_private_token
+  - id: Generic - 1733 secret 
+    enabled: true
+    pattern: heroku_api_key
+  - id: Generic - 1734 secret 
+    enabled: true
+    pattern: instagram_access_token
+  - id: Generic - 1735 secret 
+    enabled: true
+    pattern: mailchimp_api_key
+  - id: Generic - 1736 secret 
+    enabled: true
+    pattern: mailgun_api_key
+  - id: Generic - 1739 secret 
+    enabled: true
+    pattern: pagerduty_api_token
+  - id: Generic - 1740 secret 
+    enabled: true
+    pattern: paypal_key_sb
+  - id: Generic - 1741 secret 
+    enabled: true
+    pattern: paypal_key_live
+  - id: Generic - 1742 secret 
+    enabled: true
+    pattern: paypal_token_sb
+  - id: Generic - 1743 secret 
+    enabled: true
+    pattern: paypal_token_live
+  - id: Generic - 1744 secret 
+    enabled: true
+    pattern: pendo_integration_key
+  - id: Generic - 1745 secret 
+    enabled: true
+    pattern: salesforce_access_token
+  - id: Generic - 1746 secret 
+    enabled: true
+    pattern: saucelabs_ukey
+  - id: Generic - 1747 secret 
+    enabled: true
+    pattern: sendgrid_api_key
+  - id: Generic - 1748 secret 
+    enabled: true
+    pattern: slack_api_token
+  - id: Generic - 1751 secret 
+    enabled: true
+    pattern: square_auth_token
+  - id: Generic - 1752 secret 
+    enabled: true
+    pattern: travisci_api_token
+  - id: Generic - 1754 secret 
+    enabled: true
+    pattern: twitter_api_secret
+  - id: Generic - 1755 secret 
+    enabled: true
+    pattern: twitter_bearer_token
+  - id: Generic - 1756 secret 
+    enabled: true
+    pattern: spotify_access_token
+  - id: Generic - 1757 secret 
+    enabled: true
+    pattern: stripe_key_live
+  - id: Generic - 1758 secret 
+    enabled: true
+    pattern: wakatime_api_key
+  - id: Generic - 1759 secret 
+    enabled: true
+    pattern: wompi_auth_bearer_sb
+  - id: Generic - 1760 secret 
+    enabled: true
+    pattern: wompi_auth_bearer_live
+  - id: Generic - 1761 secret 
+    enabled: true
+    pattern: wpengine_api_key
+  - id: Generic - 1763 secret 
+    enabled: true
+    pattern: zendesk_access_token
+  - id: Generic - 1764 secret 
+    enabled: true
+    pattern: ssh-rsa
+  - id: Gengo secret 
+    enabled: true
+    pattern: (?:gengo).{0,40}([ ]{0,1}[0-9a-zA-Z\[\]\-\(\)\{\}|_^@$=~]{64}[ \r\n]{1})
+  - id: Geoapify secret 
+    enabled: true
+    pattern: (?:geoapify).{0,40}\b([a-z0-9]{32})\b
+  - id: Geocode secret 
+    enabled: true
+    pattern: (?:geocode).{0,40}\b([a-z0-9]{28})\b
+  - id: Geocodify secret 
+    enabled: true
+    pattern: (?:geocodify).{0,40}\b([0-9a-z]{40})\b
+  - id: Geocodio - 2 secret 
+    enabled: true
+    pattern: (?:geocod).{0,40}\b([a-z0-9]{39})\b
+  - id: Geoipifi secret 
+    enabled: true
+    pattern: (?:ipifi).{0,40}\b([a-z0-9A-Z_]{32})\b
+  - id: Getemail secret 
+    enabled: true
+    pattern: (?:getemail).{0,40}\b([a-zA-Z0-9-]{20})\b
+  - id: Getemails - 1 secret 
+    enabled: true
+    pattern: (?:getemails).{0,40}\b([a-z0-9-]{26})\b
+  - id: Getemails - 2 secret 
+    enabled: true
+    pattern: (?:getemails).{0,40}\b([a-z0-9-]{18})\b
+  - id: Getgeoapi secret 
+    enabled: true
+    pattern: (?:getgeoapi).{0,40}\b([0-9a-z]{40})\b
+  - id: Getgist secret 
+    enabled: true
+    pattern: (?:getgist).{0,40}\b([a-z0-9A-Z+=]{68})
+  - id: Getsandbox - 1 secret 
+    enabled: true
+    pattern: (?:getsandbox).{0,40}\b([a-z0-9-]{40})\b
+  - id: Getsandbox - 2 secret 
+    enabled: true
+    pattern: (?:getsandbox).{0,40}\b([a-z0-9-]{15,30})\b
+  - id: Github - 2 secret 
+    enabled: true
+    pattern: \b((?:ghp|gho|ghu|ghs|ghr)_[a-zA-Z0-9]{36,255}\b)
+  - id: Github App Token secret 
+    enabled: true
+    pattern: (ghu|ghs)_[0-9a-zA-Z]{36}
+  - id: Github OAuth Access Token secret 
+    enabled: true
+    pattern: gho_[0-9a-zA-Z]{36}
+  - id: Github Personal Access Token secret 
+    enabled: true
+    pattern: ghp_[0-9a-zA-Z]{36}
+  - id: Github Refresh Token secret 
+    enabled: true
+    pattern: ghr_[0-9a-zA-Z]{76}
+  - id: Github_old secret 
+    enabled: true
+    pattern: (?:github)[^\.].{0,40}
+  - id: Githubapp - 2 secret 
+    enabled: true
+    pattern: (?:github).{0,40}(-----BEGIN RSA PRIVATE KEY-----\s[A-Za-z0-9+\/\s]*\s-----END RSA PRIVATE KEY-----)
+  - id: Gitlabv2 secret 
+    enabled: true
+    pattern: \b(glpat-[a-zA-Z0-9\-=_]{20,22})\b
+  - id: Gitter secret 
+    enabled: true
+    pattern: (?:gitter).{0,40}\b([a-z0-9-]{40})\b
+  - id: Glassnode secret 
+    enabled: true
+    pattern: (?:glassnode).{0,40}\b([0-9A-Za-z]{27})\b
+  - id: Gocanvas - 1 secret 
+    enabled: true
+    pattern: (?:gocanvas).{0,40}\b([0-9A-Za-z/+]{43}=[ \r\n]{1})
+  - id: Gocanvas - 2 secret 
+    enabled: true
+    pattern: (?:gocanvas).{0,40}\b([\w\.-]+@[\w-]+\.[\w\.-]{2,5})\b
+  - id: Goodday secret 
+    enabled: true
+    pattern: (?:goodday).{0,40}\b([a-z0-9]{32})\b
+  - id: Google API Key secret 
+    enabled: true
+    pattern: AIza[0-9a-z-_]{35}
+  - id: Google Calendar URI secret 
+    enabled: true
+    pattern: https://www\.google\.com/calendar/embed\?src=[A-Za-z0-9%@&;=\-_\./]+
+  - id: Google OAuth Access Token secret 
+    enabled: true
+    pattern: ya29\.[0-9A-Za-z\-_]+
+  - id: Graphcms - 1 secret 
+    enabled: true
+    pattern: (?:graph).{0,40}\b([a-z0-9]{25})\b
+  - id: Graphcms - 2 secret 
+    enabled: true
+    pattern: \b(ey[a-zA-Z0-9]{73}.ey[a-zA-Z0-9]{365}.[a-zA-Z0-9_-]{683})\b
+  - id: Graphhopper secret 
+    enabled: true
+    pattern: (?:graphhopper).{0,40}\b([a-z0-9-]{36})\b
+  - id: Groovehq secret 
+    enabled: true
+    pattern: (?:groove).{0,40}\b([a-z0-9A-Z]{64})
+  - id: Guru - 1 secret 
+    enabled: true
+    pattern: (?:guru).{0,40}\b([a-zA-Z0-9]{3,20}@[a-zA-Z0-9]{2,12}.[a-zA-Z0-9]{2,5})\b
+  - id: Guru - 2 secret 
+    enabled: true
+    pattern: (?:guru).{0,40}\b([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})\b
+  - id: Gyazo secret 
+    enabled: true
+    pattern: (?:gyazo).{0,40}\b([0-9A-Za-z-]{43})\b
+  - id: Happi secret 
+    enabled: true
+    pattern: (?:happi).{0,40}\b([a-zA-Z0-9]{56})
+  - id: Happyscribe secret 
+    enabled: true
+    pattern: (?:happyscribe).{0,40}\b([0-9a-zA-Z]{24})\b
+  - id: Harvest - 1 secret 
+    enabled: true
+    pattern: (?:harvest).{0,40}\b([a-z0-9A-Z._]{97})\b
+  - id: Hellosign secret 
+    enabled: true
+    pattern: (?:hellosign).{0,40}\b([a-zA-Z-0-9/+]{64})\b
+  - id: Helpcrunch secret 
+    enabled: true
+    pattern: (?:helpcrunch).{0,40}\b([a-zA-Z-0-9+/=]{328})
+  - id: Helpscout secret 
+    enabled: true
+    pattern: (?:helpscout).{0,40}\b([A-Za-z0-9]{56})\b
+  - id: Hereapi secret 
+    enabled: true
+    pattern: (?:hereapi).{0,40}\b([a-zA-Z0-9\S]{43})\b
+  - id: Heroku secret 
+    enabled: true
+    pattern: (?:heroku).{0,40}\b([0-9Aa-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b
+  - id: Hive - 2 secret 
+    enabled: true
+    pattern: (?:hive).{0,40}\b([0-9A-Za-z]{17})\b
+  - id: Hiveage secret 
+    enabled: true
+    pattern: (?:hiveage).{0,40}\b([0-9A-Za-z\_\-]{20})\b
+  - id: Holidayapi secret 
+    enabled: true
+    pattern: (?:holidayapi).{0,40}\b([a-z0-9-]{36})\b
+  - id: Html2pdf secret 
+    enabled: true
+    pattern: (?:html2pdf).{0,40}\b([a-zA-Z0-9]{64})\b
+  - id: Hubspotapikey secret 
+    enabled: true
+    pattern: (?:hubspot).{0,40}\b([A-Za-z0-9]{8}\-[A-Za-z0-9]{4}\-[A-Za-z0-9]{4}\-[A-Za-z0-9]{4}\-[A-Za-z0-9]{12})\b
+  - id: Humanity secret 
+    enabled: true
+    pattern: (?:humanity).{0,40}\b([0-9a-z]{40})\b
+  - id: Hypertrack - 1 secret 
+    enabled: true
+    pattern: (?:hypertrack).{0,40}\b([0-9a-zA-Z\_\-]{54})\b
+  - id: Hypertrack - 2 secret 
+    enabled: true
+    pattern: (?:hypertrack).{0,40}\b([0-9a-zA-Z\_\-]{27})\b
+  - id: Ibmclouduserkey secret 
+    enabled: true
+    pattern: (?:ibm).{0,40}\b([A-Za-z0-9_-]{44})\b
+  - id: Iconfinder secret 
+    enabled: true
+    pattern: (?:iconfinder).{0,40}\b([a-zA-Z0-9]{64})\b
+  - id: Iexcloud secret 
+    enabled: true
+    pattern: (?:iexcloud).{0,40}\b([a-z0-9_]{35})\b
+  - id: Imagekit secret 
+    enabled: true
+    pattern: (?:imagekit).{0,40}\b([a-zA-Z0-9_=]{36})
+  - id: Imagga secret 
+    enabled: true
+    pattern: (?:imagga).{0,40}\b([a-z0-9A-Z=]{72})
+  - id: Impala secret 
+    enabled: true
+    pattern: (?:impala).{0,40}\b([0-9A-Za-z_]{46})\b
+  - id: Insightly secret 
+    enabled: true
+    pattern: (?:insightly).{0,40}\b([a-z0-9-]{36})\b
+  - id: Integromat secret 
+    enabled: true
+    pattern: (?:integromat).{0,40}\b([a-z0-9-]{36})\b
+  - id: Intrinio secret 
+    enabled: true
+    pattern: (?:intrinio).{0,40}\b([a-zA-Z0-9]{44})\b
+  - id: Invoiceocean - 1 secret 
+    enabled: true
+    pattern: (?:invoiceocean).{0,40}\b([0-9A-Za-z]{20})\b
+  - id: Invoiceocean - 2 secret 
+    enabled: true
+    pattern: \b([0-9a-z]{1,}.invoiceocean.com)\b
+  - id: Ipapi secret 
+    enabled: true
+    pattern: (?:ipapi).{0,40}\b([a-z0-9]{32})\b
+  - id: Ipgeolocation secret 
+    enabled: true
+    pattern: (?:ipgeolocation).{0,40}\b([a-z0-9]{32})\b
+  - id: Ipify secret 
+    enabled: true
+    pattern: (?:ipify).{0,40}\b([a-zA-Z0-9_-]{32})\b
+  - id: Ipinfodb secret 
+    enabled: true
+    pattern: (?:ipinfodb).{0,40}\b([a-z0-9]{64})\b
+  - id: Ipquality secret 
+    enabled: true
+    pattern: (?:ipquality).{0,40}\b([0-9a-z]{32})\b
+  - id: Ipstack secret 
+    enabled: true
+    pattern: (?:ipstack).{0,40}\b([a-fA-f0-9]{32})\b
+  - id: JDBC Connection String secret 
+    enabled: true
+    pattern: jdbc:[a-z:]+://[A-Za-z0-9\.\-_:;=/@?,&]+
+  - id: Jiratoken - 1 secret 
+    enabled: true
+    pattern: (?:jira).{0,40}\b([a-zA-Z-0-9]{24})\b
+  - id: Jiratoken - 2 secret 
+    enabled: true
+    pattern: (?:jira).{0,40}\b([a-zA-Z-0-9]{5,24}\@[a-zA-Z-0-9]{3,16}\.com)\b
+  - id: Jotform secret 
+    enabled: true
+    pattern: (?:jotform).{0,40}\b([0-9Aa-z]{32})\b
+  - id: Jumpcloud secret 
+    enabled: true
+    pattern: (?:jumpcloud).{0,40}\b([a-zA-Z0-9]{40})\b
+  - id: Juro secret 
+    enabled: true
+    pattern: (?:juro).{0,40}\b([a-zA-Z0-9]{40})\b
+  - id: Kanban - 1 secret 
+    enabled: true
+    pattern: (?:kanban).{0,40}\b([0-9A-Z]{12})\b
+  - id: Kanban - 2 secret 
+    enabled: true
+    pattern: \b([0-9a-z]{1,}.kanbantool.com)\b
+  - id: Karmacrm secret 
+    enabled: true
+    pattern: (?:karma).{0,40}\b([a-zA-Z0-9]{20})\b
+  - id: Keenio - 1 secret 
+    enabled: true
+    pattern: (?:keen).{0,40}\b([0-9a-z]{24})\b
+  - id: Keenio - 2 secret 
+    enabled: true
+    pattern: (?:keen).{0,40}\b([0-9A-Z]{64})\b
+  - id: Kickbox secret 
+    enabled: true
+    pattern: (?:kickbox).{0,40}\b([a-zA-Z0-9_]+[a-zA-Z0-9]{64})\b
+  - id: Klipfolio secret 
+    enabled: true
+    pattern: (?:klipfolio).{0,40}\b([0-9a-f]{40})\b
+  - id: Kontent secret 
+    enabled: true
+    pattern: (?:kontent).{0,40}\b([a-z0-9-]{36})\b
+  - id: Kucoin - 1 secret 
+    enabled: true
+    pattern: (?:kucoin).{0,40}(r\n]{1}[!-~]{7,32}r\n]{1})
+  - id: Kucoin - 2 secret 
+    enabled: true
+    pattern: (?:kucoin).{0,40}\b([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b
+  - id: Kucoin - 3 secret 
+    enabled: true
+    pattern: (?:kucoin).{0,40}\b([0-9a-f]{24})\b
+  - id: Kylas secret 
+    enabled: true
+    pattern: (?:kylas).{0,40}\b([a-z0-9-]{36})\b
+  - id: Languagelayer secret 
+    enabled: true
+    pattern: (?:languagelayer).{0,40}\b([a-z0-9]{32})\b
+  - id: Lastfm secret 
+    enabled: true
+    pattern: (?:lastfm).{0,40}\b([0-9a-z]{32})\b
+  - id: Launchdarkly secret 
+    enabled: true
+    pattern: (?:launchdarkly).{0,40}\b([a-z0-9-]{40})\b
+  - id: Leadfeeder secret 
+    enabled: true
+    pattern: (?:leadfeeder).{0,40}\b([a-zA-Z0-9-]{43})\b
+  - id: Lendflow secret 
+    enabled: true
+    pattern: (?:lendflow).{0,40}\b([a-zA-Z0-9]{36}\.[a-zA-Z0-9]{235}\.[a-zA-Z0-9]{32}\-[a-zA-Z0-9]{47}\-[a-zA-Z0-9_]{162}\-[a-zA-Z0-9]{42}\-[a-zA-Z0-9_]{40}\-[a-zA-Z0-9_]{66}\-[a-zA-Z0-9_]{59}\-[a-zA-Z0-9]{7}\-[a-zA-Z0-9_]{220})\b
+  - id: Lexigram secret 
+    enabled: true
+    pattern: (?:lexigram).{0,40}\b([a-zA-Z0-9\S]{301})\b
+  - id: Linearapi secret 
+    enabled: true
+    pattern: \b(lin_api_[0-9A-Za-z]{40})\b
+  - id: Linemessaging secret 
+    enabled: true
+    pattern: (?:line).{0,40}\b([A-Za-z0-9+/]{171,172})\b
+  - id: Linenotify secret 
+    enabled: true
+    pattern: (?:linenotify).{0,40}\b([0-9A-Za-z]{43})\b
+  - id: Linkpreview secret 
+    enabled: true
+    pattern: (?:linkpreview).{0,40}\b([a-zA-Z0-9]{32})\b
+  - id: Liveagent secret 
+    enabled: true
+    pattern: (?:liveagent).{0,40}\b([a-zA-Z0-9]{32})\b
+  - id: Livestorm secret 
+    enabled: true
+    pattern: (?:livestorm).{0,40}\b(eyJhbGciOiJIUzI1NiJ9\.eyJhdWQiOiJhcGkubGl2ZXN0b3JtLmNvIiwianRpIjoi[0-9A-Z-a-z]{134}\.[0-9A-Za-z\-\_]{43}r\n]{1})
+  - id: Locationiq secret 
+    enabled: true
+    pattern: \b(pk\.[a-zA-Z-0-9]{32})\b
+  - id: Loginradius secret 
+    enabled: true
+    pattern: (?:loginradius).{0,40}\b([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b
+  - id: Lokalisetoken secret 
+    enabled: true
+    pattern: (?:lokalise).{0,40}\b([a-z0-9]{40})\b
+  - id: Loyverse secret 
+    enabled: true
+    pattern: (?:loyverse).{0,40}\b([0-9-a-z]{32})\b
+  - id: Luno - 1 secret 
+    enabled: true
+    pattern: (?:luno).{0,40}\b([a-z0-9]{13})\b
+  - id: Luno - 2 secret 
+    enabled: true
+    pattern: (?:luno).{0,40}\b([a-zA-Z0-9_-]{43})\b
+  - id: Macaddress secret 
+    enabled: true
+    pattern: (?:macaddress).{0,40}\b([a-zA-Z0-9_]{32})\b
+  - id: Madkudu secret 
+    enabled: true
+    pattern: (?:madkudu).{0,40}\b([0-9a-f]{32})\b
+  - id: Magnetic secret 
+    enabled: true
+    pattern: (?:magnetic).{0,40}\b([0-9Aa-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12})\b
+  - id: Mailboxlayer secret 
+    enabled: true
+    pattern: (?:mailboxlayer).{0,40}\b([a-z0-9]{32})\b
+  - id: Mailerlite secret 
+    enabled: true
+    pattern: (?:mailerlite).{0,40}\b([a-z0-9]{32})\b
+  - id: Mailgun - 2 secret 
+    enabled: true
+    pattern: (?:mailgun).{0,40}\b([a-zA-Z-0-9]{72})\b
+  - id: Mailgun API Key - 1 secret 
+    enabled: true
+    pattern: key-[0-9a-zA-Z]{32}
+  - id: Mailjetbasicauth secret 
+    enabled: true
+    pattern: (?:mailjet).{0,40}\b([A-Za-z0-9]{87}\=)
+  - id: Mailjetsms secret 
+    enabled: true
+    pattern: (?:mailjet).{0,40}\b([A-Za-z0-9]{32})\b
+  - id: Mailmodo secret 
+    enabled: true
+    pattern: (?:mailmodo).{0,40}\b([A-Z0-9]{7}-[A-Z0-9]{7}-[A-Z0-9]{7}-[A-Z0-9]{7})\b
+  - id: Mailsac secret 
+    enabled: true
+    pattern: (?:mailsac).{0,40}\b(k_[0-9A-Za-z]{36,})\b
+  - id: Mandrill secret 
+    enabled: true
+    pattern: (?:mandrill).{0,40}\b([A-Za-z0-9_-]{22})\b
+  - id: Mapbox - 2 secret 
+    enabled: true
+    pattern: \b(sk\.[a-zA-Z-0-9\.]{80,240})\b
+  - id: Mapquest secret 
+    enabled: true
+    pattern: (?:mapquest).{0,40}\b([0-9A-Za-z]{32})\b
+  - id: Marketstack secret 
+    enabled: true
+    pattern: (?:marketstack).{0,40}\b([a-z0-9]{32})\b
+  - id: Mattermostpersonaltoken - 1 secret 
+    enabled: true
+    pattern: (?:mattermost).{0,40}\b([A-Za-z0-9-_]{1,}.cloud.mattermost.com)\b
+  - id: Mattermostpersonaltoken - 2 secret 
+    enabled: true
+    pattern: (?:mattermost).{0,40}\b([a-z0-9]{26})\b
+  - id: Mavenlink secret 
+    enabled: true
+    pattern: (?:mavenlink).{0,40}\b([0-9a-z]{64})\b
+  - id: Maxmindlicense - 1 secret 
+    enabled: true
+    pattern: (?:maxmind|geoip).{0,40}\b([0-9A-Za-z]{16})\b
+  - id: Maxmindlicense - 2 secret 
+    enabled: true
+    pattern: (?:maxmind|geoip).{0,40}\b([0-9]{2,7})\b
+  - id: Meaningcloud secret 
+    enabled: true
+    pattern: (?:meaningcloud).{0,40}\b([a-z0-9]{32})\b
+  - id: Mediastack secret 
+    enabled: true
+    pattern: (?:mediastack).{0,40}\b([a-z0-9]{32})\b
+  - id: Meistertask secret 
+    enabled: true
+    pattern: (?:meistertask).{0,40}\b([a-zA-Z0-9]{43})\b
+  - id: Mesibo secret 
+    enabled: true
+    pattern: (?:mesibo).{0,40}\b([0-9A-Za-z]{64})\b
+  - id: Messagebird secret 
+    enabled: true
+    pattern: (?:messagebird).{0,40}\b([A-Za-z0-9_-]{25})\b
+  - id: Metaapi - 1 secret 
+    enabled: true
+    pattern: (?:metaapi|meta-api).{0,40}\b([0-9a-f]{64})\b
+  - id: Metaapi - 2 secret 
+    enabled: true
+    pattern: (?:metaapi|meta-api).{0,40}\b([0-9a-f]{24})\b
+  - id: Metrilo secret 
+    enabled: true
+    pattern: (?:metrilo).{0,40}\b([a-z0-9]{16})\b
+  - id: Microsoftteamswebhook secret 
+    enabled: true
+    pattern: (https:\/\/[a-zA-Z-0-9]+\.webhook\.office\.com\/webhookb2\/[a-zA-Z-0-9]{8}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{12}\@[a-zA-Z-0-9]{8}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{12}\/IncomingWebhook\/[a-zA-Z-0-9]{32}\/[a-zA-Z-0-9]{8}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{4}-[a-zA-Z-0-9]{12})
+  - id: Midise secret 
+    enabled: true
+    pattern: midi-662b69edd2[a-zA-Z0-9]{54}
+  - id: Mindmeister secret 
+    enabled: true
+    pattern: (?:mindmeister).{0,40}\b([a-zA-Z0-9]{43})\b
+  - id: Mite - 1 secret 
+    enabled: true
+    pattern: (?:mite).{0,40}\b([0-9a-z]{16})\b
+  - id: Mite - 2 secret 
+    enabled: true
+    pattern: \b([0-9a-z-]{1,}.mite.yo.lk)\b
+  - id: Mixmax secret 
+    enabled: true
+    pattern: (?:mixmax).{0,40}\b([a-zA-Z0-9_-]{36})\b
+  - id: Mixpanel - 1 secret 
+    enabled: true
+    pattern: (?:mixpanel).{0,40}\b([a-zA-Z0-9.-]{30,40})\b
+  - id: Mixpanel - 2 secret 
+    enabled: true
+    pattern: (?:mixpanel).{0,40}\b([a-zA-Z0-9-]{32})\b
+  - id: Moderation secret 
+    enabled: true
+    pattern: (?:moderation).{0,40}\b([a-zA-Z0-9]{36}\.[a-zA-Z0-9]{115}\.[a-zA-Z0-9_]{43})\b
+  - id: Monday secret 
+    enabled: true
+    pattern: (?:monday).{0,40}\b(ey[a-zA-Z0-9_.]{210,225})\b
+  - id: Moonclerck secret 
+    enabled: true
+    pattern: (?:moonclerck).{0,40}\b([0-9a-z]{32})\b
+  - id: Moonclerk secret 
+    enabled: true
+    pattern: (?:moonclerk).{0,40}\b([0-9a-z]{32})\b
+  - id: Moosend secret 
+    enabled: true
+    pattern: (?:moosend).{0,40}\b([0-9Aa-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b
+  - id: Mrticktock - 1 secret 
+    enabled: true
+    pattern: (?:mrticktock).{0,40}\b([a-zA-Z0-9!=@#$%()_^]{1,50})
+  - id: Myintervals secret 
+    enabled: true
+    pattern: (?:myintervals).{0,40}\b([0-9a-z]{11})\b
+  - id: Nasdaqdatalink secret 
+    enabled: true
+    pattern: (?:nasdaq).{0,40}\b([a-zA-Z0-9_-]{20})\b
+  - id: Nethunt - 1 secret 
+    enabled: true
+    pattern: (?:nethunt).{0,40}\b([a-zA-Z0-9.-@]{25,30})\b
+  - id: Nethunt - 2 secret 
+    enabled: true
+    pattern: (?:nethunt).{0,40}\b([a-z0-9-\S]{36})\b
+  - id: Netlify secret 
+    enabled: true
+    pattern: (?:netlify).{0,40}\b([A-Za-z0-9_-]{43,45})\b
+  - id: Neutrinoapi - 1 secret 
+    enabled: true
+    pattern: (?:neutrinoapi).{0,40}\b([a-zA-Z0-9]{48})\b
+  - id: Neutrinoapi - 2 secret 
+    enabled: true
+    pattern: (?:neutrinoapi).{0,40}\b([a-zA-Z0-9]{6,24})\b
+  - id: Newrelic Admin API Key secret 
+    enabled: true
+    pattern: NRAA-[a-f0-9]{27}
+  - id: Newrelic Insights API Key secret 
+    enabled: true
+    pattern: NRI(?:I|Q)-[A-Za-z0-9\-_]{32}
+  - id: Newrelic REST API Key secret 
+    enabled: true
+    pattern: NRRA-[a-f0-9]{42}
+  - id: Newrelic Synthetics Location Key secret 
+    enabled: true
+    pattern: NRSP-[a-z]{2}[0-9]{2}[a-f0-9]{31}
+  - id: Newrelicpersonalapikey secret 
+    enabled: true
+    pattern: (?:newrelic).{0,40}\b([A-Za-z0-9_\.]{4}-[A-Za-z0-9_\.]{42})\b
+  - id: Newsapi secret 
+    enabled: true
+    pattern: (?:newsapi).{0,40}\b([a-z0-9]{32})
+  - id: Newscatcher secret 
+    enabled: true
+    pattern: (?:newscatcher).{0,40}\b([0-9A-Za-z_]{43})\b
+  - id: Nexmoapikey - 1 secret 
+    enabled: true
+    pattern: (?:nexmo).{0,40}\b([A-Za-z0-9_-]{8})\b
+  - id: Nexmoapikey - 2 secret 
+    enabled: true
+    pattern: (?:nexmo).{0,40}\b([A-Za-z0-9_-]{16})\b
+  - id: Nftport secret 
+    enabled: true
+    pattern: (?:nftport).{0,40}\b([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})\b
+  - id: Nicereply secret 
+    enabled: true
+    pattern: (?:nicereply).{0,40}\b([0-9a-f]{40})\b
+  - id: Nimble secret 
+    enabled: true
+    pattern: (?:nimble).{0,40}\b([a-zA-Z0-9]{30})\b
+  - id: Nitro secret 
+    enabled: true
+    pattern: (?:nitro).{0,40}\b([0-9a-f]{32})\b
+  - id: Noticeable secret 
+    enabled: true
+    pattern: (?:noticeable).{0,40}\b([0-9a-zA-Z]{20})\b
+  - id: Notion secret 
+    enabled: true
+    pattern: \b(secret_[A-Za-z0-9]{43})\b
+  - id: Nozbeteams secret 
+    enabled: true
+    pattern: (?:nozbe|nozbeteams).{0,40}\b([0-9A-Za-z]{16}_[0-9A-Za-z\-_]{64}r\n]{1})
+  - id: Numverify secret 
+    enabled: true
+    pattern: (?:numverify).{0,40}\b([a-z0-9]{32})\b
+  - id: Nutritionix - 1 secret 
+    enabled: true
+    pattern: (?:nutritionix).{0,40}\b([a-z0-9]{32})\b
+  - id: Nutritionix - 2 secret 
+    enabled: true
+    pattern: (?:nutritionix).{0,40}\b([a-z0-9]{8})\b
+  - id: Nylas secret 
+    enabled: true
+    pattern: (?:nylas).{0,40}\b([0-9A-Za-z]{30})\b
+  - id: Oanda secret 
+    enabled: true
+    pattern: (?:oanda).{0,40}\b([a-zA-Z0-9]{24})\b
+  - id: Omnisend secret 
+    enabled: true
+    pattern: (?:omnisend).{0,40}\b([a-z0-9A-Z-]{75})\b
+  - id: Onedesk - 1 secret 
+    enabled: true
+    pattern: (?:onedesk).{0,40}\b([a-zA-Z0-9!=@#$%^]{8,64})
+  - id: Onepagecrm - 1 secret 
+    enabled: true
+    pattern: (?:onepagecrm).{0,40}\b([a-zA-Z0-9=]{44})
+  - id: Onepagecrm - 2 secret 
+    enabled: true
+    pattern: (?:onepagecrm).{0,40}\b([a-z0-9]{24})\b
+  - id: Onwaterio secret 
+    enabled: true
+    pattern: (?:onwater).{0,40}\b([a-zA-Z0-9_-]{20})\b
+  - id: Oopspam secret 
+    enabled: true
+    pattern: (?:oopspam).{0,40}\b([a-zA-Z0-9]{40})\b
+  - id: Opencagedata secret 
+    enabled: true
+    pattern: (?:opencagedata).{0,40}\b([a-z0-9]{32})\b
+  - id: Opengraphr secret 
+    enabled: true
+    pattern: (?:opengraphr).{0,40}\b([0-9Aa-zA-Z]{80})\b
+  - id: Openuv secret 
+    enabled: true
+    pattern: (?:openuv).{0,40}\b([0-9a-z]{32})\b
+  - id: Openweather secret 
+    enabled: true
+    pattern: (?:openweather).{0,40}\b([a-z0-9]{32})\b
+  - id: Optimizely secret 
+    enabled: true
+    pattern: (?:optimizely).{0,40}\b([0-9A-Za-z-:]{54})\b
+  - id: Owlbot secret 
+    enabled: true
+    pattern: (?:owlbot).{0,40}\b([a-z0-9]{40})\b
+  - id: PGP private key block secret 
+    enabled: true
+    pattern: -----BEGIN PGP PRIVATE KEY BLOCK-----
+  - id: Pagerdutyapikey secret 
+    enabled: true
+    pattern: (?:pagerduty).{0,40}\b([a-z]{1}\+[a-zA-Z]{9}\-[a-z]{2}\-[a-z0-9]{5})\b
+  - id: Pandadoc secret 
+    enabled: true
+    pattern: (?:pandadoc).{0,40}\b([a-zA-Z0-9]{40})\b
+  - id: Pandascore secret 
+    enabled: true
+    pattern: (?:pandascore).{0,40}(r\n]{0,1}[0-9A-Za-z\-\_]{51}r\n]{1})
+  - id: Paralleldots secret 
+    enabled: true
+    pattern: (?:paralleldots).{0,40}\b([0-9A-Za-z]{43})\b
+  - id: Partnerstack secret 
+    enabled: true
+    pattern: (?:partnerstack).{0,40}\b([0-9A-Za-z]{64})\b
+  - id: Passbase secret 
+    enabled: true
+    pattern: (?:passbase).{0,40}\b([a-zA-Z0-9]{128})\b
+  - id: Pastebin secret 
+    enabled: true
+    pattern: (?:pastebin).{0,40}\b([a-zA-Z0-9_]{32})\b
+  - id: PayPal Braintree access token secret 
+    enabled: true
+    pattern: access_token\$production\$[0-9a-z]{16}\$[0-9a-f]{32}
+  - id: Paymoapp secret 
+    enabled: true
+    pattern: (?:paymoapp).{0,40}\b([a-zA-Z0-9]{44})\b
+  - id: Paymongo secret 
+    enabled: true
+    pattern: (?:paymongo).{0,40}\b([a-zA-Z0-9_]{32})\b
+  - id: Paystack secret 
+    enabled: true
+    pattern: \b(sk\_[a-z]{1,}\_[A-Za-z0-9]{40})\b
+  - id: Pdflayer secret 
+    enabled: true
+    pattern: (?:pdflayer).{0,40}\b([a-z0-9]{32})\b
+  - id: Pdfshift secret 
+    enabled: true
+    pattern: (?:pdfshift).{0,40}\b([0-9a-f]{32})\b
+  - id: Peopledatalabs secret 
+    enabled: true
+    pattern: (?:peopledatalabs).{0,40}\b([a-z0-9]{64})\b
+  - id: Pepipost secret 
+    enabled: true
+    pattern: (?:pepipost|netcore).{0,40}\b([a-zA-Z-0-9]{32})\b
+  - id: Picatic API key secret 
+    enabled: true
+    pattern: sk_live_[0-9a-z]{32}
+  - id: Pipedream secret 
+    enabled: true
+    pattern: (?:pipedream).{0,40}\b([a-z0-9]{32})\b
+  - id: Pipedrive secret 
+    enabled: true
+    pattern: (?:pipedrive).{0,40}\b([a-zA-Z0-9]{40})\b
+  - id: Pivotaltracker secret 
+    enabled: true
+    pattern: (?:pivotal).{0,40}([a-z0-9]{32})
+  - id: Pixabay secret 
+    enabled: true
+    pattern: (?:pixabay).{0,40}\b([a-z0-9-]{34})\b
+  - id: Plaidkey - 1 secret 
+    enabled: true
+    pattern: (?:plaid).{0,40}\b([a-z0-9]{24})\b
+  - id: Plaidkey - 2 secret 
+    enabled: true
+    pattern: (?:plaid).{0,40}\b([a-z0-9]{30})\b
+  - id: Planviewleankit - 1 secret 
+    enabled: true
+    pattern: (?:planviewleankit|planview).{0,40}\b([0-9a-f]{128})\b
+  - id: Planviewleankit - 2 secret 
+    enabled: true
+    pattern: (?:planviewleankit|planview).{0,40}(?:subdomain).\b([a-zA-Z][a-zA-Z0-9.-]{1,23}[a-zA-Z0-9])\b
+  - id: Planyo secret 
+    enabled: true
+    pattern: (?:planyo).{0,40}\b([0-9a-z]{62})\b
+  - id: Plivo - 1 secret 
+    enabled: true
+    pattern: (?:plivo).{0,40}\b([A-Za-z0-9_-]{40})\b
+  - id: Plivo - 2 secret 
+    enabled: true
+    pattern: (?:plivo).{0,40}\b([A-Z]{20})\b
+  - id: Poloniex - 1 secret 
+    enabled: true
+    pattern: (?:poloniex).{0,40}\b([0-9a-f]{128})\b
+  - id: Poloniex - 2 secret 
+    enabled: true
+    pattern: (?:poloniex).{0,40}\b([0-9A-Z]{8}-[0-9A-Z]{8}-[0-9A-Z]{8}-[0-9A-Z]{8})\b
+  - id: Polygon secret 
+    enabled: true
+    pattern: (?:polygon).{0,40}\b([a-z0-9A-Z]{32})\b
+  - id: Positionstack secret 
+    enabled: true
+    pattern: (?:positionstack).{0,40}\b([a-zA-Z0-9_]{32})\b
+  - id: Postageapp secret 
+    enabled: true
+    pattern: (?:postageapp).{0,40}\b([0-9A-Za-z]{32})\b
+  - id: Posthog secret 
+    enabled: true
+    pattern: \b(phc_[a-zA-Z0-9_]{43})\b
+  - id: Postman secret 
+    enabled: true
+    pattern: \b(PMAK-[a-zA-Z-0-9]{59})\b
+  - id: Postmark secret 
+    enabled: true
+    pattern: (?:postmark).{0,40}\b([0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12})\b
+  - id: Powrbot secret 
+    enabled: true
+    pattern: (?:powrbot).{0,40}\b([a-z0-9A-Z]{40})\b
+  - id: Privatekey secret 
+    enabled: true
+    pattern: -----\s*?BEGIN[ A-Z0-9_-]*?PRIVATE KEY\s*?-----[\s\S]*?----\s*?END[ A-Z0-9_-]*? PRIVATE KEY\s*?-----
+  - id: Prospectcrm secret 
+    enabled: true
+    pattern: (?:prospect).{0,40}\b([a-z0-9-]{32})\b
+  - id: Prospectio secret 
+    enabled: true
+    pattern: (?:prospect).{0,40}\b([a-z0-9A-Z-]{50})\b
+  - id: Protocolsio secret 
+    enabled: true
+    pattern: (?:protocols).{0,40}\b([a-z0-9]{64})\b
+  - id: Proxycrawl secret 
+    enabled: true
+    pattern: (?:proxycrawl).{0,40}\b([a-zA-Z0-9_]{22})\b
+  - id: Pubnubpublishkey - 1 secret 
+    enabled: true
+    pattern: \b(sub-c-[0-9a-z]{8}-[a-z]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})\b
+  - id: Pubnubpublishkey - 2 secret 
+    enabled: true
+    pattern: \b(pub-c-[0-9a-z]{8}-[0-9a-z]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})\b
+  - id: Purestake secret 
+    enabled: true
+    pattern: (?:purestake).{0,40}\b([a-zA-Z0-9]{40})\b
+  - id: Pushbulletapikey secret 
+    enabled: true
+    pattern: (?:pushbullet).{0,40}\b([A-Za-z0-9_\.]{34})\b
+  - id: Pusherchannelkey - 2 secret 
+    enabled: true
+    pattern: (?:pusher).{0,40}\b([a-z0-9]{20})\b
+  - id: Pusherchannelkey - 3 secret 
+    enabled: true
+    pattern: (?:pusher).{0,40}\b([0-9]{7})\b
+  - id: PyPI upload token secret 
+    enabled: true
+    pattern: pypi-AgEIcHlwaS5vcmc[A-Za-z0-9-_]{50,1000}
+  - id: Qualaroo secret 
+    enabled: true
+    pattern: (?:qualaroo).{0,40}\b([a-z0-9A-Z=]{64})
+  - id: Qubole secret 
+    enabled: true
+    pattern: (?:qubole).{0,40}\b([0-9a-z]{64})\b
+  - id: Quickmetrics secret 
+    enabled: true
+    pattern: (?:quickmetrics).{0,40}\b([a-zA-Z0-9_-]{22})\b
+  - id: RKCS8 secret 
+    enabled: true
+    pattern: -----BEGIN PRIVATE KEY-----
+  - id: RSA private key secret 
+    enabled: true
+    pattern: -----BEGIN RSA PRIVATE KEY-----
+  - id: Rapidapi secret 
+    enabled: true
+    pattern: (?:rapidapi).{0,40}\b([A-Za-z0-9_-]{50})\b
+  - id: Raven secret 
+    enabled: true
+    pattern: (?:raven).{0,40}\b([A-Z0-9-]{16})\b
+  - id: Rawg secret 
+    enabled: true
+    pattern: (?:rawg).{0,40}\b([0-9Aa-z]{32})\b
+  - id: Razorpay - 1 secret 
+    enabled: true
+    pattern: \brzp_\w{2,6}_\w{10,20}\b
+  - id: Readme secret 
+    enabled: true
+    pattern: (?:readme).{0,40}\b([a-zA-Z0-9_]{32})\b
+  - id: Reallysimplesystems secret 
+    enabled: true
+    pattern: \b(ey[a-zA-Z0-9-._]{153}.ey[a-zA-Z0-9-._]{916,1000})\b
+  - id: Rebrandly secret 
+    enabled: true
+    pattern: (?:rebrandly).{0,40}\b([a-zA-Z0-9_]{32})\b
+  - id: Refiner secret 
+    enabled: true
+    pattern: (?:refiner).{0,40}\b([0-9Aa-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b
+  - id: Repairshopr - 1 secret 
+    enabled: true
+    pattern: (?:repairshopr).{0,40}\b([a-zA-Z0-9_.!+$#^*]{3,32})\b
+  - id: Repairshopr - 2 secret 
+    enabled: true
+    pattern: (?:repairshopr).{0,40}\b([a-zA-Z0-9-]{51})\b
+  - id: Restpack secret 
+    enabled: true
+    pattern: (?:restpack).{0,40}\b([a-zA-Z0-9]{48})\b
+  - id: Restpackhtmltopdfapi secret 
+    enabled: true
+    pattern: (?:restpack).{0,40}\b([0-9A-Za-z]{48})\b
+  - id: Rev - 1 secret 
+    enabled: true
+    pattern: (?:rev).{0,40}\b([0-9a-zA-Z\/\+]{27}\=r\n]{1})
+  - id: Revampcrm - 1 secret 
+    enabled: true
+    pattern: (?:revamp).{0,40}\b([a-zA-Z0-9]{40}\b)
+  - id: Ringcentral - 1 secret 
+    enabled: true
+    pattern: (?:ringcentral).{0,40}\b(https://www.[0-9A-Za-z_-]{1,}.com)\b
+  - id: Ringcentral - 2 secret 
+    enabled: true
+    pattern: (?:ringcentral).{0,40}\b([0-9A-Za-z_-]{22})\b
+  - id: Ritekit secret 
+    enabled: true
+    pattern: (?:ritekit).{0,40}\b([0-9a-f]{44})\b
+  - id: Roaring secret 
+    enabled: true
+    pattern: (?:roaring).{0,40}\b([0-9A-Za-z_-]{28})\b
+  - id: Rocketreach secret 
+    enabled: true
+    pattern: (?:rocketreach).{0,40}\b([a-z0-9-]{39})\b
+  - id: Roninapp - 2 secret 
+    enabled: true
+    pattern: (?:ronin).{0,40}\b([0-9a-zA-Z]{26})\b
+  - id: Route4me secret 
+    enabled: true
+    pattern: (?:route4me).{0,40}\b([0-9A-Z]{32})\b
+  - id: Rownd - 1 secret 
+    enabled: true
+    pattern: (?:rownd).{0,40}\b([a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12})\b
+  - id: Rownd - 2 secret 
+    enabled: true
+    pattern: (?:rownd).{0,40}\b([a-z0-9]{48})\b
+  - id: Rownd - 3 secret 
+    enabled: true
+    pattern: (?:rownd).{0,40}\b([0-9]{18})\b
+  - id: Rubygems secret 
+    enabled: true
+    pattern: \b(rubygems_[a-zA0-9]{48})\b
+  - id: Runrunit - 1 secret 
+    enabled: true
+    pattern: (?:runrunit).{0,40}\b([0-9a-f]{32})\b
+  - id: Runrunit - 2 secret 
+    enabled: true
+    pattern: (?:runrunit).{0,40}\b([0-9A-Za-z]{18,20})\b
+  - id: SSH secret 
+    enabled: true
+    pattern: -----BEGIN OPENSSH PRIVATE KEY-----
+  - id: SSH (DSA) private key secret 
+    enabled: true
+    pattern: -----BEGIN DSA PRIVATE KEY-----
+  - id: Salesblink secret 
+    enabled: true
+    pattern: (?:salesblink).{0,40}\b([a-zA-Z]{16})\b
+  - id: Salescookie secret 
+    enabled: true
+    pattern: (?:salescookie).{0,40}\b([a-zA-z0-9]{32})\b
+  - id: Salesflare secret 
+    enabled: true
+    pattern: (?:salesflare).{0,40}\b([a-zA-Z0-9_]{45})\b
+  - id: Satismeterprojectkey - 1 secret 
+    enabled: true
+    pattern: (?:satismeter).{0,40}\b([a-zA-Z0-9]{4,20}@[a-zA-Z0-9]{2,12}.[a-zA-Z0-9]{2,12})\b
+  - id: Satismeterprojectkey - 2 secret 
+    enabled: true
+    pattern: (?:satismeter).{0,40}\b([a-zA-Z0-9]{24})\b
+  - id: Satismeterprojectkey - 3 secret 
+    enabled: true
+    pattern: (?:satismeter).{0,40}\b([a-zA-Z0-9!=@#$%^]{6,32})
+  - id: Satismeterwritekey secret 
+    enabled: true
+    pattern: (?:satismeter).{0,40}\b([a-z0-9A-Z]{16})\b
+  - id: Saucelabs - 1 secret 
+    enabled: true
+    pattern: \b(oauth\-[a-z0-9]{8,}\-[a-z0-9]{5})\b
+  - id: Saucelabs - 2 secret 
+    enabled: true
+    pattern: (?:saucelabs).{0,40}\b([a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12})\b
+  - id: Scalewaykey secret 
+    enabled: true
+    pattern: (?:scaleway).{0,40}\b([0-9a-z]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[0-9a-z]{4}-[0-9a-z]{12})\b
+  - id: Scrapeowl secret 
+    enabled: true
+    pattern: (?:scrapeowl).{0,40}\b([0-9a-z]{30})\b
+  - id: Scraperapi secret 
+    enabled: true
+    pattern: (?:scraperapi).{0,40}\b([a-z0-9]{32})\b
+  - id: Scraperbox secret 
+    enabled: true
+    pattern: (?:scraperbox).{0,40}\b([A-Z0-9]{32})\b
+  - id: Scrapersite secret 
+    enabled: true
+    pattern: (?:scrapersite).{0,40}\b([a-zA-Z0-9]{45})\b
+  - id: Scrapestack secret 
+    enabled: true
+    pattern: (?:scrapestack).{0,40}\b([a-z0-9]{32})\b
+  - id: Scrapfly secret 
+    enabled: true
+    pattern: (?:scrapfly).{0,40}\b([a-z0-9]{32})\b
+  - id: Scrapingant secret 
+    enabled: true
+    pattern: (?:scrapingant).{0,40}\b([a-z0-9]{32})\b
+  - id: Scrapingbee secret 
+    enabled: true
+    pattern: (?:scrapingbee).{0,40}\b([A-Z0-9]{80})\b
+  - id: Screenshotapi secret 
+    enabled: true
+    pattern: (?:screenshotapi).{0,40}\b([0-9A-Z]{7}\-[0-9A-Z]{7}\-[0-9A-Z]{7}\-[0-9A-Z]{7})\b
+  - id: Screenshotlayer secret 
+    enabled: true
+    pattern: (?:screenshotlayer).{0,40}\b([a-zA-Z0-9_]{32})\b
+  - id: Securitytrails secret 
+    enabled: true
+    pattern: (?:securitytrails).{0,40}\b([a-zA-Z0-9]{32})\b
+  - id: Segmentapikey secret 
+    enabled: true
+    pattern: (?:segment).{0,40}\b([A-Za-z0-9_\-a-zA-Z]{43}\.[A-Za-z0-9_\-a-zA-Z]{43})\b
+  - id: Selectpdf secret 
+    enabled: true
+    pattern: (?:selectpdf).{0,40}\b([a-z0-9-]{36})\b
+  - id: Semaphore secret 
+    enabled: true
+    pattern: (?:semaphore).{0,40}\b([0-9a-z]{32})\b
+  - id: SendGrid API Key secret 
+    enabled: true
+    pattern: SG\.[\w_]{16,32}\.[\w_]{16,64}
+  - id: Sendbird - 1 secret 
+    enabled: true
+    pattern: (?:sendbird).{0,40}\b([0-9a-f]{40})\b
+  - id: Sendbird - 2 secret 
+    enabled: true
+    pattern: (?:sendbird).{0,40}\b([0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})\b
+  - id: Sendbirdorganizationapi secret 
+    enabled: true
+    pattern: (?:sendbird).{0,40}\b([0-9a-f]{24})\b
+  - id: Sendgrid secret 
+    enabled: true
+    pattern: (?:sendgrid).{0,40}(SG\.[\w\-_]{20,24}\.[\w\-_]{39,50})\b
+  - id: Sendinbluev2 secret 
+    enabled: true
+    pattern: \b(xkeysib\-[A-Za-z0-9_-]{81})\b
+  - id: Sentiment - 1 secret 
+    enabled: true
+    pattern: (?:sentiment).{0,40}\b([0-9]{17})\b
+  - id: Sentiment - 2 secret 
+    enabled: true
+    pattern: (?:sentiment).{0,40}\b([a-zA-Z0-9]{20})\b
+  - id: Sentrytoken secret 
+    enabled: true
+    pattern: (?:sentry).{0,40}\b([a-f0-9]{64})\b
+  - id: Serphouse secret 
+    enabled: true
+    pattern: (?:serphouse).{0,40}\b([0-9A-Za-z]{60})\b
+  - id: Serpstack secret 
+    enabled: true
+    pattern: (?:serpstack).{0,40}\b([a-z0-9]{32})\b
+  - id: Sheety - 1 secret 
+    enabled: true
+    pattern: (?:sheety).{0,40}\b([0-9a-z]{32})\b
+  - id: Sheety - 2 secret 
+    enabled: true
+    pattern: (?:sheety).{0,40}\b([0-9a-z]{64})\b
+  - id: Sherpadesk secret 
+    enabled: true
+    pattern: (?:sherpadesk).{0,40}\b([0-9a-z]{32})\b
+  - id: Shipday secret 
+    enabled: true
+    pattern: (?:shipday).{0,40}\b([a-zA-Z0-9.]{11}[a-zA-Z0-9]{20})\b
+  - id: Shodankey secret 
+    enabled: true
+    pattern: (?:shodan).{0,40}\b([a-zA-Z0-9]{32})\b
+  - id: Shopify access token secret 
+    enabled: true
+    pattern: shpat_[a-fA-F0-9]{32}
+  - id: Shopify custom app access token secret 
+    enabled: true
+    pattern: shpca_[a-fA-F0-9]{32}
+  - id: Shopify private app access token secret 
+    enabled: true
+    pattern: shppa_[a-fA-F0-9]{32}
+  - id: Shopify shared secret secret 
+    enabled: true
+    pattern: shpss_[a-fA-F0-9]{32}
+  - id: Shortcut secret 
+    enabled: true
+    pattern: (?:shortcut).{0,40}\b([0-9a-f-]{36})\b
+  - id: Shotstack secret 
+    enabled: true
+    pattern: (?:shotstack).{0,40}\b([a-zA-Z0-9]{40})\b
+  - id: Shutterstockoauth secret 
+    enabled: true
+    pattern: (?:shutterstock).{0,40}\b(v2/[0-9A-Za-z]{388})\b
+  - id: Signalwire - 1 secret 
+    enabled: true
+    pattern: \b([0-9a-z-]{3,64}.signalwire.com)\b
+  - id: Signalwire - 2 secret 
+    enabled: true
+    pattern: (?:signalwire).{0,40}\b([0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12})\b
+  - id: Signalwire - 3 secret 
+    enabled: true
+    pattern: (?:signalwire).{0,40}\b([0-9A-Za-z]{50})\b
+  - id: Signaturit secret 
+    enabled: true
+    pattern: (?:signaturit).{0,40}\b([0-9A-Za-z]{86})\b
+  - id: Signupgenius secret 
+    enabled: true
+    pattern: (?:signupgenius).{0,40}\b([0-9A-Za-z]{32})\b
+  - id: Sigopt secret 
+    enabled: true
+    pattern: (?:sigopt).{0,40}\b([A-Z0-9]{48})\b
+  - id: Simplesat secret 
+    enabled: true
+    pattern: (?:simplesat).{0,40}\b([a-z0-9]{40})
+  - id: Simplynoted secret 
+    enabled: true
+    pattern: (?:simplynoted).{0,40}\b([a-zA-Z0-9\S]{340,360})\b
+  - id: Simvoly secret 
+    enabled: true
+    pattern: (?:simvoly).{0,40}\b([a-z0-9]{33})\b
+  - id: Sinchmessage secret 
+    enabled: true
+    pattern: (?:sinch).{0,40}\b([a-z0-9]{32})\b
+  - id: Sirv - 1 secret 
+    enabled: true
+    pattern: (?:sirv).{0,40}\b([a-zA-Z0-9\S]{88})
+  - id: Sirv - 2 secret 
+    enabled: true
+    pattern: (?:sirv).{0,40}\b([a-zA-Z0-9]{26})\b
+  - id: Siteleaf secret 
+    enabled: true
+    pattern: (?:siteleaf).{0,40}\b([0-9Aa-z]{32})\b
+  - id: Skrappio secret 
+    enabled: true
+    pattern: (?:skrapp).{0,40}\b([a-z0-9A-Z]{42})\b
+  - id: Skybiometry secret 
+    enabled: true
+    pattern: (?:skybiometry).{0,40}\b([0-9a-z]{25,26})\b
+  - id: Slack secret 
+    enabled: true
+    pattern: xox[baprs]-[0-9a-zA-Z]{10,48}
+  - id: Slack Token secret 
+    enabled: true
+    pattern: (xox[pborsa]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})
+  - id: Slack Webhook secret 
+    enabled: true
+    pattern: https://hooks.slack.com/services/T[a-zA-Z0-9_]{8,10}/B[a-zA-Z0-9_]{8,12}/[a-zA-Z0-9_]{23,24}
+  - id: Slack access token secret 
+    enabled: true
+    pattern: xoxb-[0-9A-Za-z\-]{51}
+  - id: Slackwebhook secret 
+    enabled: true
+    pattern: (https:\/\/hooks.slack.com\/services\/[A-Za-z0-9+\/]{44,46})
+  - id: Smartsheets secret 
+    enabled: true
+    pattern: (?:smartsheets).{0,40}\b([a-zA-Z0-9]{37})\b
+  - id: Smartystreets - 1 secret 
+    enabled: true
+    pattern: (?:smartystreets).{0,40}\b([a-zA-Z0-9]{20})\b
+  - id: Smartystreets - 2 secret 
+    enabled: true
+    pattern: (?:smartystreets).{0,40}\b([a-z0-9-]{36})\b
+  - id: Smooch - 1 secret 
+    enabled: true
+    pattern: (?:smooch).{0,40}\b(act_[0-9a-z]{24})\b
+  - id: Smooch - 2 secret 
+    enabled: true
+    pattern: (?:smooch).{0,40}\b([0-9a-zA-Z_-]{86})\b
+  - id: Snipcart secret 
+    enabled: true
+    pattern: (?:snipcart).{0,40}\b([0-9A-Za-z_]{75})\b
+  - id: Snykkey secret 
+    enabled: true
+    pattern: (?:snyk).{0,40}\b([0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12})\b
+  - id: Splunkobservabilitytoken secret 
+    enabled: true
+    pattern: (?:splunk).{0,40}\b([a-z0-9A-Z]{22})\b
+  - id: Spoonacular secret 
+    enabled: true
+    pattern: (?:spoonacular).{0,40}\b([0-9a-z]{32})\b
+  - id: Sportsmonk secret 
+    enabled: true
+    pattern: (?:sportsmonk).{0,40}\b([0-9a-zA-Z]{60})\b
+  - id: Square secret 
+    enabled: true
+    pattern: (?:square).{0,40}(EAAA[a-zA-Z0-9\-\+\=]{60})
+  - id: Square OAuth Secret secret 
+    enabled: true
+    pattern: sq0csp-[0-9A-Za-z\-_]{43}
+  - id: Square access token secret 
+    enabled: true
+    pattern: sq0atp-[0-9A-Za-z\-_]{22}
+  - id: Squarespace secret 
+    enabled: true
+    pattern: (?:squarespace).{0,40}\b([0-9Aa-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b
+  - id: Squareup secret 
+    enabled: true
+    pattern: \b(sq0idp-[0-9A-Za-z]{22})\b
+  - id: Sslmate secret 
+    enabled: true
+    pattern: (?:sslmate).{0,40}\b([a-zA-Z0-9]{36})\b
+  - id: Stitchdata secret 
+    enabled: true
+    pattern: (?:stitchdata).{0,40}\b([0-9a-z_]{35})\b
+  - id: Stockdata secret 
+    enabled: true
+    pattern: (?:stockdata).{0,40}\b([0-9A-Za-z]{40})\b
+  - id: Storecove secret 
+    enabled: true
+    pattern: (?:storecove).{0,40}\b([a-zA-Z0-9_-]{43})\b
+  - id: Stormglass secret 
+    enabled: true
+    pattern: (?:stormglass).{0,40}\b([0-9Aa-z-]{73})\b
+  - id: Storyblok secret 
+    enabled: true
+    pattern: (?:storyblok).{0,40}\b([0-9A-Za-z]{22}t{2})\b
+  - id: Storychief secret 
+    enabled: true
+    pattern: (?:storychief).{0,40}\b([a-zA-Z0-9_\-.]{940,1000})
+  - id: Strava - 1 secret 
+    enabled: true
+    pattern: (?:strava).{0,40}\b([0-9]{5})\b
+  - id: Strava - 2 secret 
+    enabled: true
+    pattern: (?:strava).{0,40}\b([0-9a-z]{40})\b
+  - id: Streak secret 
+    enabled: true
+    pattern: (?:streak).{0,40}\b([0-9Aa-f]{32})\b
+  - id: Stripe API Key - 1 secret 
+    enabled: true
+    pattern: sk_live_[0-9a-zA-Z]{24}
+  - id: Stripe API key - 2 secret 
+    enabled: true
+    pattern: stripe[sr]k_live_[0-9a-zA-Z]{24}
+  - id: Stripe API key - 3 secret 
+    enabled: true
+    pattern: stripe[sk|rk]_live_[0-9a-zA-Z]{24}
+  - id: Stripe Public Live Key secret 
+    enabled: true
+    pattern: pk_live_[0-9a-z]{24}
+  - id: Stripe Public Test Key secret 
+    enabled: true
+    pattern: pk_test_[0-9a-z]{24}
+  - id: Stripe Restriced Key secret 
+    enabled: true
+    pattern: rk_(?:live|test)_[0-9a-zA-Z]{24}
+  - id: Stripe Restricted API Key secret 
+    enabled: true
+    pattern: rk_live_[0-9a-zA-Z]{24}
+  - id: Stripe Secret Key secret 
+    enabled: true
+    pattern: sk_(?:live|test)_[0-9a-zA-Z]{24}
+  - id: Stripe Secret Live Key secret 
+    enabled: true
+    pattern: (sk|rk)_live_[0-9a-z]{24}
+  - id: Stripe Secret Test Key secret 
+    enabled: true
+    pattern: (sk|rk)_test_[0-9a-z]{24}
+  - id: Stytch - 1 secret 
+    enabled: true
+    pattern: (?:stytch).{0,40}\b([a-zA-Z0-9-_]{47}=)
+  - id: Stytch - 2 secret 
+    enabled: true
+    pattern: (?:stytch).{0,40}\b([a-z0-9-]{49})\b
+  - id: Sugester - 1 secret 
+    enabled: true
+    pattern: (?:sugester).{0,40}\b([a-zA-Z0-9_.!+$#^*%]{3,32})\b
+  - id: Sugester - 2 secret 
+    enabled: true
+    pattern: (?:sugester).{0,40}\b([a-zA-Z0-9]{32})\b
+  - id: Sumologickey - 1 secret 
+    enabled: true
+    pattern: (?:sumo).{0,40}\b([A-Za-z0-9]{14})\b
+  - id: Sumologickey - 2 secret 
+    enabled: true
+    pattern: (?:sumo).{0,40}\b([A-Za-z0-9]{64})\b
+  - id: Supernotesapi secret 
+    enabled: true
+    pattern: (?:supernotes).{0,40}(r\n]{0,1}[0-9A-Za-z\-_]{43}r\n]{1})
+  - id: Surveybot secret 
+    enabled: true
+    pattern: (?:surveybot).{0,40}\b([A-Za-z0-9-]{80})\b
+  - id: Surveysparrow secret 
+    enabled: true
+    pattern: (?:surveysparrow).{0,40}\b([a-zA-Z0-9-_]{88})\b
+  - id: Survicate secret 
+    enabled: true
+    pattern: (?:survicate).{0,40}\b([a-z0-9]{32})\b
+  - id: Swell - 2 secret 
+    enabled: true
+    pattern: (?:swell).{0,40}\b([a-zA-Z0-9]{32})\b
+  - id: Swiftype secret 
+    enabled: true
+    pattern: (?:swiftype).{0,40}\b([a-zA-z-0-9]{6}\_[a-zA-z-0-9]{6}\-[a-zA-z-0-9]{6})\b
+  - id: Tallyfy secret 
+    enabled: true
+    pattern: (?:tallyfy).{0,40}\b([0-9A-Za-z]{36}\.[0-9A-Za-z]{264}\.[0-9A-Za-z\-\_]{683})\b
+  - id: Tatumio secret 
+    enabled: true
+    pattern: (?:tatum).{0,40}\b([0-9a-z-]{36})\b
+  - id: Taxjar secret 
+    enabled: true
+    pattern: (?:taxjar).{0,40}\b([a-z0-9]{32})\b
+  - id: Teamgate - 1 secret 
+    enabled: true
+    pattern: (?:teamgate).{0,40}\b([a-z0-9]{40})\b
+  - id: Teamgate - 2 secret 
+    enabled: true
+    pattern: (?:teamgate).{0,40}\b([a-zA-Z0-9]{80})\b
+  - id: Teamworkcrm secret 
+    enabled: true
+    pattern: (?:teamwork|teamworkcrm).{0,40}\b(tkn\.v1_[0-9A-Za-z]{71}=r\n]{1})
+  - id: Teamworkdesk secret 
+    enabled: true
+    pattern: (?:teamwork|teamworkdesk).{0,40}\b(tkn\.v1_[0-9A-Za-z]{71}=r\n]{1})
+  - id: Teamworkspaces secret 
+    enabled: true
+    pattern: (?:teamwork|teamworkspaces).{0,40}\b(tkn\.v1_[0-9A-Za-z]{71}=r\n]{1})
+  - id: Technicalanalysisapi secret 
+    enabled: true
+    pattern: (?:technicalanalysisapi).{0,40}\b([A-Z0-9]{48})\b
+  - id: Telegram Secret secret 
+    enabled: true
+    pattern: d{5,}:A[0-9a-z_-]{34,34}
+  - id: Telegrambottoken secret 
+    enabled: true
+    pattern: (?:telegram).{0,40}\b([0-9]{8,10}:[a-zA-Z0-9_-]{35})\b
+  - id: Telnyx secret 
+    enabled: true
+    pattern: (?:telnyx).{0,40}\b(KEY[0-9A-Za-z_-]{55})\b
+  - id: Terraformcloudpersonaltoken secret 
+    enabled: true
+    pattern: \b([A-Za-z0-9]{14}.atlasv1.[A-Za-z0-9]{67})\b
+  - id: Text2data secret 
+    enabled: true
+    pattern: (?:text2data).{0,40}\b([0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})\b
+  - id: Textmagic - 1 secret 
+    enabled: true
+    pattern: (?:textmagic).{0,40}\b([0-9A-Za-z]{30})\b
+  - id: Textmagic - 2 secret 
+    enabled: true
+    pattern: (?:textmagic).{0,40}\b([0-9A-Za-z]{1,25})\b
+  - id: Theoddsapi secret 
+    enabled: true
+    pattern: (?:theoddsapi|the-odds-api).{0,40}\b([0-9a-f]{32})\b
+  - id: Thinkific - 1 secret 
+    enabled: true
+    pattern: (?:thinkific).{0,40}\b([0-9a-f]{32})\b
+  - id: Thinkific - 2 secret 
+    enabled: true
+    pattern: (?:thinkific).{0,40}\b([0-9A-Za-z]{4,40})\b
+  - id: Thousandeyes - 1 secret 
+    enabled: true
+    pattern: (?:thousandeyes).{0,40}\b([a-zA-Z0-9]{32})\b
+  - id: Thousandeyes - 2 secret 
+    enabled: true
+    pattern: (?:thousandeyes).{0,40}\b([a-zA-Z0-9]{3,20}@[a-zA-Z0-9]{2,12}.[a-zA-Z0-9]{2,5})\b
+  - id: Ticketmaster secret 
+    enabled: true
+    pattern: (?:ticketmaster).{0,40}\b([a-zA-Z0-9]{32})\b
+  - id: Tiingo secret 
+    enabled: true
+    pattern: (?:tiingo).{0,40}\b([0-9a-z]{40})\b
+  - id: Timezoneapi secret 
+    enabled: true
+    pattern: (?:timezoneapi).{0,40}\b([a-zA-Z0-9]{20})\b
+  - id: Tly secret 
+    enabled: true
+    pattern: (?:tly).{0,40}\b([0-9A-Za-z]{60})\b
+  - id: Tmetric secret 
+    enabled: true
+    pattern: (?:tmetric).{0,40}\b([0-9A-Z]{64})\b
+  - id: Todoist secret 
+    enabled: true
+    pattern: (?:todoist).{0,40}\b([0-9a-z]{40})\b
+  - id: Toggltrack secret 
+    enabled: true
+    pattern: (?:toggl).{0,40}\b([0-9Aa-z]{32})\b
