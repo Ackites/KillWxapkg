@@ -54,7 +54,7 @@ func cleanDefineFunc(jsCode string) string {
 // extractDefineParams 提取所有 define 函数的第一个和第二个参数
 func extractDefineParams(jsCode string) ([]DefineParams, error) {
 	// 正则表达式提取 define 函数的第一个和第二个参数
-	re := regexp.MustCompile(`define\s*\(\s*["']([^"']+)["']\s*,\s*function\s*\(([^)]*)\)\s*\{([\s\S]*?)\}\s*,\s*\{[^}]*isPage\s*:\s*[^}]*\}\s*\)\s*;`)
+	re := regexp.MustCompile(`define\s*\(\s*["']([^"']+)["']\s*,\s*function\s*\(([^)]*)\)\{\s*\n[^\n]+\n`)
 	matches := re.FindAllStringSubmatch(jsCode, -1)
 
 	if len(matches) == 0 {
