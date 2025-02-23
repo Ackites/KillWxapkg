@@ -132,7 +132,7 @@ func packWxapkg(inputDir string, outputDir string) error {
 	}
 
 	// 计算索引段长度，包含每个文件的元数据长度和文件名长度
-	var indexInfoLength uint32
+	indexInfoLength := uint32(4) // "文件数量"占4字节
 	for _, file := range files {
 		indexInfoLength += 4 + uint32(len(file.Name)) + 4 + 4 // NameLen + Name + Offset + Size
 	}
@@ -164,8 +164,8 @@ func packWxapkg(inputDir string, outputDir string) error {
 		if _, err := outFile.Write([]byte(file.Name)); err != nil {
 			return fmt.Errorf("写入文件名失败: %w", err)
 		}
-		// 加上 18 字节文件头长度和索引段长度
-		if err := binary.Write(outFile, binary.BigEndian, file.Offset+indexInfoLength+18); err != nil {
+		// 加上 14 字节文件头长度和索引段长度
+		if err := binary.Write(outFile, binary.BigEndian, file.Offset+indexInfoLength+14); err != nil {
 			return fmt.Errorf("写入文件偏移量失败: %w", err)
 		}
 		if err := binary.Write(outFile, binary.BigEndian, file.Size); err != nil {
